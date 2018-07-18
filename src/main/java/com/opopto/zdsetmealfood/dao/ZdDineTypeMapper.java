@@ -27,4 +27,6 @@ public interface ZdDineTypeMapper {
     int updateByPrimaryKeySelective(ZdDineType record);
 
     int updateByPrimaryKey(ZdDineType record);
+
+    List<ZdDineType> listAll();
 }

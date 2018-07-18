@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, place_code, code, name, del_flag, create_time, update_time, desc
+    id, place_code, code, `name`, del_flag, create_time, update_time, `desc`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.opopto.zdsetmealfood.entity.ZdPlaceItemExample" >
     select
@@ -92,6 +92,12 @@
     <include refid="Base_Column_List" />
     from zd_place_item
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPlaceCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from zd_place_item
+    where place_code = #{placeCode,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from zd_place_item

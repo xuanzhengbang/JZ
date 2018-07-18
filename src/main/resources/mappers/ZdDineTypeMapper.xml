@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, code, name, del_flag, create_time, update_time, desc
+    id, code, `name`, del_flag, create_time, update_time, `desc`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.opopto.zdsetmealfood.entity.ZdDineTypeExample" >
     select
@@ -85,6 +85,12 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+  </select>
+  <select id="listAll" resultType="java.util.Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    from zd_dine_type
+    where del_flag = 0;
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

@@ -27,4 +27,6 @@ public interface ZdPlaceItemMapper {
     int updateByPrimaryKeySelective(ZdPlaceItem record);
 
     int updateByPrimaryKey(ZdPlaceItem record);
+
+    List<ZdPlaceItem> selectByPlaceCode(@Param("placeCode") String placeCode);
 }

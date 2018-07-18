@@ -75,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, code, price, book_date, place_code, dine_type_code, num, create_uid, del_flag, 
-    create_time, update_time, desc
+    create_time, update_time, `desc`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.opopto.zdsetmealfood.entity.ZdSetmealExample" >
     select
