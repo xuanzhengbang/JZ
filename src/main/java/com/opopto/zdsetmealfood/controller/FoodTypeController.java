@@ -1,9 +1,9 @@
 package com.opopto.zdsetmealfood.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.opopto.zdsetmealfood.entity.ZdFood;
+import com.opopto.zdsetmealfood.entity.ZdFoodType;
 import com.opopto.zdsetmealfood.helper.ServiceParamHelper;
-import com.opopto.zdsetmealfood.service.ZdFoodService;
+import com.opopto.zdsetmealfood.service.ZdFoodTypeService;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,27 +16,26 @@ import java.util.List;
 @CommonsLog
 @Controller
 @ResponseBody
-@RequestMapping("food")
-public class FoodController extends BaseApiController {
+@RequestMapping("foodType")
+public class FoodTypeController extends BaseApiController {
 
     @Autowired
-    private ZdFoodService foodService;
+    private ZdFoodTypeService foodTypeService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public Object create(String name, String typeCode){
-        ZdFood food = new ZdFood();
-        food.setName(name);
-        food.setTypeCode(typeCode);
-        food.setCode("f_" + System.currentTimeMillis());
-        foodService.create(food);
+    public Object create(String name){
+        ZdFoodType type = new ZdFoodType();
+        type.setName(name);
+        type.setCode("ft_" + System.currentTimeMillis());
+        foodTypeService.create(type);
         return ServiceParamHelper.createSuccessResultJSONObject();
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public Object list(){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
-        List<ZdFood> foodList = foodService.list();
-        result.put("data", foodList);
+        List<ZdFoodType> foodTypeList = foodTypeService.list();
+        result.put("data", foodTypeList);
         return result;
     }
 
