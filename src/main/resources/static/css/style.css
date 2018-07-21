@@ -29,6 +29,18 @@ ul,li {
 	color: black;
 	border: 2px solid #e7e7e7;
 }
+.busubmit{
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+}
+.busubmit:hover{
+	border: 2px solid black;
+}
+.busubmit:visited{
+	border: 2px solid black;
+}
+}
 .button4:hover{
 	border: 2px solid black;
 }
@@ -45,7 +57,21 @@ ul,li {
 	border: 2px solid #e7e7e7;
 	border-radius:5px;
 }
+
+/*负责专门的li标签*/
+.nextli{
+	padding-left: 0%!important;
+	/*background-color: #2196F3;*/
+}
+.nextli a{margin-left: 10%;}
+
+.nextlili{
+	background: #55b4ff;
+}
 /*sdsd*/
+
+
+
 ul{
 	padding-left: 10px;
 	font-weight: normal
@@ -913,6 +939,7 @@ p.quote:before {
 .ripple {
 	width: 100%;
 	height: 100%;
+
 }
 .ripple {
 	position: relative;
@@ -927,6 +954,7 @@ p.quote:before {
 	-o-text-decoration: none;
 	text-decoration: none;
 	position: relative;
+	border: 1px solid beige; border-left: none; border-right: none;
 }
 ul li a:focus {
 	-webkit-text-decoration: none;
@@ -1344,6 +1372,7 @@ ul li a:focus {
 	position: absolute;
 	bottom: -3px;
 }
+
 .badges-ribbon-content:before {
 	left: 0;
 }
@@ -1945,19 +1974,20 @@ ul li a:focus {
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 42px;
+	/*background-color: #2196F3;*/
 }
 #left-menu .sub-left-menu .right-arrow {
 	float: right;
 	padding-top: 13px;
 }
 #left-menu .sub-left-menu a:hover {
-	background: none;
+
 	-webkit-text-decoration: none;
 	-moz-text-decoration: none;
 	-ms-text-decoration: none;
 	-o-text-decoration: none;
 	text-decoration: none;
-	background-color:#2196F3;
+	background-color:#55b4ff;
 
 }
 #left-menu .sub-left-menu span {
@@ -1967,14 +1997,13 @@ ul li a:focus {
 	line-height: 44px;
 }
 #left-menu .sub-left-menu .active {
-	border-left: 8px solid #2196F3;
-	background-color:#2196F3;
-}
-#left-menu .sub-left-menu .active {
+	border-left: 8px solid #55b4ff;
 	width: 100%;
-	background-color:#2196F3;
-
+	background-color:#55b4ff!important;
+	/*/background-color:#2196F3;*/
 }
+
+
 #left-menu .sub-left-menu .time h1 {
 	font-weight: 500;
 	font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2605,7 +2634,7 @@ ul li a:focus {
 	border: 3px solid #fff;
 }
 .box-v2 .panel-body {
-	background: #2196F3;
+	/*background: #2196F3;*/
 	color: #fff;
 	line-height: 0;
 	padding-bottom: 30px;

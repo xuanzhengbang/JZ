@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="description" content="12">
@@ -10,10 +11,10 @@
   <!-- start: Css -->
   <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
   <!-- plugins -->
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/font-a2018/7/19wesome.min.css"/>
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/simple-line-icons.css"/>
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/animate.min.css"/>
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/fullcalendar.min.css"/>
+
+  <link rel="stylesheet" type="text/css" href="../static/css/plugins/simple-line-icons.css" />
+  <link rel="stylesheet" type="text/css" href="../static/css/plugins/animate.min.css" />
+  <link rel="stylesheet" type="text/css" href="../static/css/plugins/fullcalendar.min.css" />
   <link href="../static/css/style.css" rel="stylesheet">
   <!-- end: Css -->
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -32,9 +33,11 @@
 
       <ul class="nav navbar-nav navbar-right user-nav">
         <li class="user-name"><span>xxxxx</span></li>
-        <li class="dropdown avatar-dropdown"> <img src="../static/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"/>
+        <li class="dropdown avatar-dropdown"> <img src="../static/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
           <ul class="dropdown-menu user-dropdown">
-            <li><a href="#"><span class="fa fa-power-off"></span> 退出登录</a></li>
+            <li>
+              <a href="#"><span class="fa fa-power-off"></span> 退出登录</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -50,10 +53,31 @@
         <li>
           <div class="left-bg"></div>
         </li>
-        <li class="active ripple"> <a href="#" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a> </li>
-        <li class="ripple"> <a href="#" class="tree-toggle nav-header"> <span class="fa-diamond fa"></span> 冷菜 <span class="fa-angle-right fa right-arrow text-right"></span> </a></li>
-        <li class=" ripple"> <a href="#"  class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> 汤菜 <span class="fa-angle-right fa right-arrow text-right"></span> </a> </li>
-        <li class=" ripple"> <a href="#"  class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 炒菜 <span class="fa-angle-right fa right-arrow text-right"></span> </a> </li>
+        <li class="active ripple">
+          <a href="#" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+
+          <ul class="nav nav-list tree">
+            <li class="nextli">
+              <a href="#">冷菜</a>
+            </li>
+            <li class="nextli">
+              <a href="#">汤菜</a>
+            </li>
+            <li class="nextli">
+              <a href="#">炒菜</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="ripple">
+          <a href="#" class="tree-toggle nav-header"> <span class="fa-diamond fa"></span>套餐类型<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        </li>
+        <li class=" ripple">
+          <a href="#" class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span>订餐类别<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        </li>
+        <li class=" ripple">
+          <a href="#" class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -61,7 +85,7 @@
 
   <!-- start: content -->
   <div id="content">
-    <div class="panel">
+    <div class="panel" style="background-color: #55b4ff;">
       <div class="panel-body">
         <div class="col-md-6 col-sm-12" style="padding-top: 18px;">
           <h3 class="animated fadeInLeft">欢迎您：xxxxx</h3>
@@ -86,30 +110,32 @@
                 </div>
                 <div class="panel-body text-center">
 
-                  <button class="button button4 ">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
-                  <button class="button button4">白斩鸡</button>
+                  <form id="formid" class="formid" name="myform" method='post' onsubmit="">
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="扣肉">扣肉</button>
+                    <button type="button" class="button button4" value="酱鸭">酱鸭</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
+                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
 
+                    <hr style="border-top: 1px solid #2196F3;" />
+                    <input type="button" value="添加菜品" class="button busubmit" style="float:right;"></input>
 
-                  <hr style="border-top: 1px solid #2196F3;"/>
-                  <button class="button button4" style="float:right">添加菜单</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -117,22 +143,25 @@
         </div>
         <div class="col-md-4">
           <div class="col-md-12 padding-0">
-            <div class="panel box-v2">
-              <div class="panel-heading padding-0"> <img src="../static/img/bg2.jpg" class="box-v2-cover img-responsive"/>
-                <div class="box-v2-detail"> <img src="../static/img/avatar.jpg" class="img-responsive"/>
-                  <h4>菜单</h4>
-                </div>
+            <div class="panel box-v2" style="padding: 10px;">
+
+              <div class="box-v2-detail">
+                <h4 class="text-left">菜单</h4>
+
               </div>
-              <div class="panel-body">
+
+              <div class="panel-body" style="margin-top: 6%;">
                 <div class="col-md-12 padding-0 text-center">
 
-
-                  <button class="button button5">白斩鸡</button>
-                  <button class="button button5">白斩鸡</button>
-                  <button class="button button5">白斩鸡</button>
-                  <button class="button button5">白斩鸡</button>
-                  <hr style="border-top: 1px solid #000;"/>
-                  <button class="button button5" >打印预览</button>
+                  <div class="addFood">
+                    <button class="button button5 button7">白斩鸡</button>
+                    <button class="button button5 button7">白斩鸡</button>
+                    <button class="button button5 button7">白斩鸡</button>
+                    <button class="button button5 button7">白斩鸡</button>
+                  </div>
+                  <hr style="border-top: 1px solid #000;" />
+                  <input type="button" class="button button5 buttonDe" value="删除菜品"></input>
+                  <input type="button" class="button button5" value="打印预览"></input>
                 </div>
               </div>
             </div>
@@ -159,4 +188,5 @@
 
 </div>
 </body>
+
 </html>
