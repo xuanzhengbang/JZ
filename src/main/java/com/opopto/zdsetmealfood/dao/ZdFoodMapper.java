@@ -3,6 +3,8 @@ package com.opopto.zdsetmealfood.dao;
 import com.opopto.zdsetmealfood.entity.ZdFood;
 import com.opopto.zdsetmealfood.entity.ZdFoodExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ZdFoodMapper {
@@ -27,4 +29,9 @@ public interface ZdFoodMapper {
     int updateByPrimaryKeySelective(ZdFood record);
 
     int updateByPrimaryKey(ZdFood record);
+
+    ZdFood selectByName(@Param("name") String name);
+
+    List<ZdFood> query(Map<String,String> param);
+
 }

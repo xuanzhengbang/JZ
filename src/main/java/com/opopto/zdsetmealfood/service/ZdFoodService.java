@@ -6,7 +6,9 @@ import com.opopto.zdsetmealfood.entity.ZdFoodExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ZdFoodService {
@@ -24,6 +26,11 @@ public class ZdFoodService {
         ZdFoodExample example = new ZdFoodExample();
         example.createCriteria().andDelFlagEqualTo(0);
         List<ZdFood> list = foodMapper.selectByExample(example);
+        return list;
+    }
+
+    public List<ZdFood> query(Map<String,String> param){
+        List<ZdFood> list = foodMapper.query(param);
         return list;
     }
 

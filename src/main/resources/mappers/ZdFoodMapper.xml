@@ -93,6 +93,25 @@
     from zd_food
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from zd_food
+    where `name` = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    f.*
+    FROM
+    zd_food f,
+    zd_food_type ft
+    WHERE
+    f.type_code = ft.`code`
+    AND ft.`name` = #{name,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from zd_food
     where id = #{id,jdbcType=INTEGER}
