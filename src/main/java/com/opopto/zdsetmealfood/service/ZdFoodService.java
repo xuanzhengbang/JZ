@@ -29,8 +29,8 @@ public class ZdFoodService {
         return list;
     }
 
-    public List<ZdFood> query(Map<String,String> param){
-        List<ZdFood> list = foodMapper.query(param);
+    public List<ZdFood> query(String name){
+        List<ZdFood> list = foodMapper.query(name);
         return list;
     }
 

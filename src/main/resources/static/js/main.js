@@ -2,6 +2,27 @@
 
     // Variable
     var $ = jQuery;
+
+    /*$.ajax({
+        type: "get",
+        url: "food/list",
+        data: "type=" + "汤菜",
+        dataType: 'json',
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function(data) {
+            console.log(data);
+            var tmp = "<button type=\"button\" class=\"button button4\" value='{0}'>{0}</button>";
+            var bts = "";
+            $.each(data.data, function(index,element){
+                bts += StringFormat(tmp, element.name);
+            });
+            console.log(bts);
+            document.getElementById("bts").innerHTML = bts;
+        }
+
+    });*/
+
+
     $.fn.ripple = function() {
         $(this).click(function(e) {
             var rippler = $(this),
@@ -57,6 +78,7 @@
         //通过获取点击添加的css查找选中的按钮
         $("button.button6").each(function() {
             var a = $(this).text();
+            $(this).removeClass("button6");
             arr.push(a);
         });
         for(var i in arr) {
@@ -387,3 +409,14 @@
     treeMenu();
     hide();
 })(jQuery);
+
+function StringFormat() {
+    if (arguments.length == 0)
+        return null;
+    var str = arguments[0];
+    for (var i = 1; i < arguments.length; i++) {
+        var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+        str = str.replace(re, arguments[i]);
+    }
+    return str;
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -9,18 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>xxxxx</title>
   <!-- start: Css -->
-  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <!-- plugins -->
 
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/simple-line-icons.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/animate.min.css" />
-  <link rel="stylesheet" type="text/css" href="../static/css/plugins/fullcalendar.min.css" />
-  <link href="../static/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/plugins/simple-line-icons.css" />
+  <link rel="stylesheet" type="text/css" href="/css/plugins/animate.min.css" />
+  <link rel="stylesheet" type="text/css" href="/css/plugins/fullcalendar.min.css" />
+  <link href="/css/style.css" rel="stylesheet">
   <!-- end: Css -->
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-  <script src="../static/js/html5shiv.min.js"></script>
-  <script src="../static/js/respond.min.js"></script>2018/7/19
+  <script src="/js/html5shiv.min.js"></script>
+  <script src="/js/respond.min.js"></script>2018/7/19
   <![endif]-->
 </head>
 
@@ -33,7 +33,7 @@
 
       <ul class="nav navbar-nav navbar-right user-nav">
         <li class="user-name"><span>xxxxx</span></li>
-        <li class="dropdown avatar-dropdown"> <img src="../static/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+        <li class="dropdown avatar-dropdown"> <img src="/img/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
           <ul class="dropdown-menu user-dropdown">
             <li>
               <a href="#"><span class="fa fa-power-off"></span> 退出登录</a>
@@ -58,13 +58,13 @@
 
           <ul class="nav nav-list tree">
             <li class="nextli">
-              <a href="#">冷菜</a>
+              <a href="/food/query?type=位上">位上</a>
             </li>
             <li class="nextli">
-              <a href="#">汤菜</a>
+              <a href="/food/query?type=汤菜">汤菜</a>
             </li>
             <li class="nextli">
-              <a href="#">炒菜</a>
+              <a href="/food/query?type=海鲜">海鲜</a>
             </li>
           </ul>
         </li>
@@ -111,29 +111,13 @@
                 <div class="panel-body text-center">
 
                   <form id="formid" class="formid" name="myform" method='post' onsubmit="">
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="扣肉">扣肉</button>
-                    <button type="button" class="button button4" value="酱鸭">酱鸭</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-                    <button type="button" class="button button4" value="白斩鸡">白斩鸡</button>
-
+                    <div id="bts">
+                      <span th:each="item : ${foods}">
+                        <button type="button" class="button button4" th:value="${item.name}" th:text="${item.name}"></button>
+                      </span>
+                    </div>
                     <hr style="border-top: 1px solid #2196F3;" />
-                    <input type="button" value="添加菜品" class="button busubmit" style="float:right;"></input>
+                    <input type="button" value="添加菜品" class="button busubmit" style="float:right;" />
 
                   </form>
                 </div>
@@ -154,10 +138,7 @@
                 <div class="col-md-12 padding-0 text-center">
 
                   <div class="addFood">
-                    <button class="button button5 button7">白斩鸡</button>
-                    <button class="button button5 button7">白斩鸡</button>
-                    <button class="button button5 button7">白斩鸡</button>
-                    <button class="button button5 button7">白斩鸡</button>
+
                   </div>
                   <hr style="border-top: 1px solid #000;" />
                   <input type="button" class="button button5 buttonDe" value="删除菜品"></input>
@@ -176,13 +157,13 @@
 </div>
 
 <!-- start: Javascript -->
-<script src="../static/js/jquery.min.js"></script>
-<script src="../static/js/jquery.ui.min.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <!-- plugins -->
-<script src="../static/js/plugins/jquery.nicescroll.js"></script>
+<script src="/js/plugins/jquery.nicescroll.js"></script>
 <!-- custom -->
-<script src="../static/js/main.js"></script>
+<script src="/js/main.js"></script>
 <!-- end: Javascript -->
 <div style="text-align:center;">
 

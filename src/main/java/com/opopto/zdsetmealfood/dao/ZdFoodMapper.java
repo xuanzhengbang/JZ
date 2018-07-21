@@ -32,6 +32,6 @@ public interface ZdFoodMapper {
 
     ZdFood selectByName(@Param("name") String name);
 
-    List<ZdFood> query(Map<String,String> param);
+    List<ZdFood> query(@Param("name") String name);
 
 }

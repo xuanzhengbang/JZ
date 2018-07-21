@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,13 +20,12 @@ import java.util.Map;
 @CommonsLog
 @Controller
 @ResponseBody
-@RequestMapping("food")
 public class FoodController extends BaseApiController {
 
     @Autowired
     private ZdFoodService foodService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/food/create", method = RequestMethod.POST)
     public Object create(String name, String typeCode){
         ZdFood food = new ZdFood();
         food.setName(name);
@@ -35,27 +35,26 @@ public class FoodController extends BaseApiController {
         return ServiceParamHelper.createSuccessResultJSONObject();
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public Object list(){
-        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView list(){
+
+        ModelAndView model = new ModelAndView();
         List<ZdFood> foodList = foodService.list();
-        result.put("data", foodList);
-        return result;
+        model.addObject("foods",foodList);
+        model.setViewName("index");
+        return model;
     }
 
-    @RequestMapping(value = "/query", method = RequestMethod.GET)
-    public Object query(String type){
-        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+    @RequestMapping(value = "/food/query", method = RequestMethod.GET)
+    public ModelAndView query(String type){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
         if(StringUtils.isEmpty(type)){
-            return result;
+            return model;
         }
-        Map<String,String> param = new HashMap<>();
-
-        param.put("type", type);
-
-        List<ZdFood> foodList = foodService.query(param);
-        result.put("data", foodList);
-        return result;
+        List<ZdFood> foodList = foodService.query(type);
+        model.addObject("foods",foodList);
+        return model;
     }
 
 }
