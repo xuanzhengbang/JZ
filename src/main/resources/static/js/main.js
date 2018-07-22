@@ -3,6 +3,16 @@
     // Variable
     var $ = jQuery;
 
+    var cache = window.localStorage.getItem("bts");
+    if(cache != null){
+        var arr = cache.split(",");
+        for(var i in arr) {
+            if(arr[i] != "" && arr[i] != "null" && arr[i] != null)
+                $(".addFood").append("<button class='button button5 button7' id='button7'>" + arr[i] + "</button>")
+        }
+    }
+
+
     /*$.ajax({
         type: "get",
         url: "food/list",
@@ -81,6 +91,13 @@
             $(this).removeClass("button6");
             arr.push(a);
         });
+        var bts = window.localStorage.getItem("bts");
+        if(bts != null && bts != "" && bts != "null"){
+            bts += "," + arr;
+        } else {
+            bts = arr;
+        }
+        window.localStorage.setItem("bts",bts);
         for(var i in arr) {
             $(".addFood").append("<button class='button button5 button7' id='button7'>" + arr[i] + "</button>")
         }
@@ -95,6 +112,10 @@
     });
 
     $(".buttonDe").click(function() {
+        var btName = $(".buttonDel").text();
+        console.log("要删除的菜谱：" + btName);
+        var bts = window.localStorage.getItem("bts");
+        window.localStorage.setItem("bts", bts.replace(btName,""));
 
         $(".buttonDel").remove();
     });
