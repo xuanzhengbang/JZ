@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,24 +37,34 @@ public class FoodController extends BaseApiController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView list(){
-
+    public ModelAndView list(HttpServletRequest request){
+        Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         List<ZdFood> foodList = foodService.list();
-        model.addObject("foods",foodList);
-        model.setViewName("index");
+        if(user == null){
+            model.setViewName("login");
+        } else {
+            model.addObject("foods",foodList);
+            model.setViewName("index");
+        }
+
         return model;
     }
 
     @RequestMapping(value = "/food/query", method = RequestMethod.GET)
-    public ModelAndView query(String type){
+    public ModelAndView query(String type, HttpServletRequest request){
+        Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
-        model.setViewName("index");
         if(StringUtils.isEmpty(type)){
             return model;
         }
         List<ZdFood> foodList = foodService.query(type);
-        model.addObject("foods",foodList);
+        if(user == null){
+            model.setViewName("login");
+        } else {
+            model.addObject("foods",foodList);
+            model.setViewName("index");
+        }
         return model;
     }
 
