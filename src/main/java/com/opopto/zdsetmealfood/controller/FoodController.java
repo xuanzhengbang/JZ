@@ -28,12 +28,14 @@ public class FoodController extends BaseApiController {
 
     @RequestMapping(value = "/food/create", method = RequestMethod.POST)
     public Object create(String name, String typeCode){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
         ZdFood food = new ZdFood();
         food.setName(name);
         food.setTypeCode(typeCode);
         food.setCode("f_" + System.currentTimeMillis());
-        foodService.create(food);
-        return ServiceParamHelper.createSuccessResultJSONObject();
+        food = foodService.create(food);
+        result.put("data", food);
+        return result;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

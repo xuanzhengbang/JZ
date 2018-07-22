@@ -15,9 +15,18 @@ public class ZdFoodTypeService {
     private ZdFoodTypeMapper foodTypeMapper;
 
 
-    public boolean create(ZdFoodType type){
+    public ZdFoodType create(ZdFoodType type){
+
+        ZdFoodTypeExample example = new ZdFoodTypeExample();
+        example.createCriteria()
+                .andDelFlagEqualTo(0)
+                .andNameEqualTo(type.getName());
+        List<ZdFoodType> check = foodTypeMapper.selectByExample(example);
+        if(!check.isEmpty()){
+            return check.get(0);
+        }
         foodTypeMapper.insertSelective(type);
-        return true;
+        return type;
     }
 
     public List<ZdFoodType> list(){

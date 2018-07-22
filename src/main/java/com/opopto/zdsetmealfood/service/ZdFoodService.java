@@ -17,9 +17,13 @@ public class ZdFoodService {
     private ZdFoodMapper foodMapper;
 
 
-    public boolean create(ZdFood food){
+    public ZdFood create(ZdFood food){
+        ZdFood check = foodMapper.selectByName(food.getName());
+        if(check != null){
+            return check;
+        }
         foodMapper.insertSelective(food);
-        return true;
+        return food;
     }
 
     public List<ZdFood> list(){
