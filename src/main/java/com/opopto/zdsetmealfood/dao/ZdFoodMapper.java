@@ -34,4 +34,6 @@ public interface ZdFoodMapper {
 
     List<ZdFood> query(@Param("name") String name);
 
+    List<ZdFood> listAndTypeName();
+
 }

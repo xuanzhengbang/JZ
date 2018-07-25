@@ -109,7 +109,7 @@
     </selectKey>
     insert into zd_setmeal_item (food_code, food_name, setmeal_code, 
       del_flag, create_time, update_time, 
-      desc)
+      `desc`)
     values (#{foodCode,jdbcType=VARCHAR}, #{foodName,jdbcType=VARCHAR}, #{setmealCode,jdbcType=VARCHAR}, 
       #{delFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{desc,jdbcType=VARCHAR})
@@ -139,7 +139,7 @@
         update_time,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -197,7 +197,7 @@
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.desc != null" >
-        desc = #{record.desc,jdbcType=VARCHAR},
+        `desc` = #{record.desc,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -213,7 +213,7 @@
       del_flag = #{record.delFlag,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      desc = #{record.desc,jdbcType=VARCHAR}
+      `desc` = #{record.desc,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -240,7 +240,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+        `desc` = #{desc,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -253,7 +253,7 @@
       del_flag = #{delFlag,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      desc = #{desc,jdbcType=VARCHAR}
+      `desc` = #{desc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

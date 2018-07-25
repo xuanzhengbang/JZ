@@ -12,6 +12,8 @@ public class ZdFood implements Serializable {
 
     private String typeCode;
 
+    private String typeName;
+
     private Integer delFlag;
 
     private Date createTime;
@@ -52,6 +54,14 @@ public class ZdFood implements Serializable {
 
     public void setTypeCode(String typeCode) {
         this.typeCode = typeCode == null ? null : typeCode.trim();
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public Integer getDelFlag() {

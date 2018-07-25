@@ -20,13 +20,13 @@ public class ZdDineTypeService {
     private ZdDineTypeMapper dineTypeMapper;
 
     public List<ZdDineType> list() {
-
         return dineTypeMapper.listAll();
     }
 
-    public void create(ZdDineType dineType){
+    public ZdDineType create(ZdDineType dineType){
         dineTypeMapper.insertSelective(dineType);
         log.info("insert record to zd_dine_type by " + dineType);
+        return dineType;
     }
 
 }

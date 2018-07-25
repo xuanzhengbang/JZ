@@ -38,4 +38,8 @@ public class ZdFoodService {
         return list;
     }
 
+    public List<ZdFood> listAndTypeName(){
+        return foodMapper.listAndTypeName();
+    }
+
 }

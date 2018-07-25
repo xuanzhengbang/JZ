@@ -86,7 +86,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="listAll" resultType="java.util.Map">
+  <select id="listAll" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     from zd_dine_type
@@ -112,8 +112,8 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into zd_dine_type (code, name, del_flag, 
-      create_time, update_time, desc
+    insert into zd_dine_type (code, `name`, del_flag,
+      create_time, update_time, `desc`
       )
     values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR}
@@ -129,7 +129,7 @@
         code,
       </if>
       <if test="name != null" >
-        name,
+        `name`,
       </if>
       <if test="delFlag != null" >
         del_flag,
@@ -141,7 +141,7 @@
         update_time,
       </if>
       <if test="desc != null" >
-        desc,
+        `desc`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -244,7 +244,7 @@
       del_flag = #{delFlag,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      desc = #{desc,jdbcType=VARCHAR}
+      `desc` = #{desc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

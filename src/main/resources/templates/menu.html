@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <!-- plugins -->
+
+    <link rel="stylesheet" type="text/css" href="/css/plugins/simple-line-icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/fullcalendar.min.css" />
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- end: Css -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- start:Left Menu -->
+<div id="left-menu" th:fragment="left">
+    <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+            <li>
+                <div class="left-bg"></div>
+            </li>
+            <li class="active ripple">
+                <a href="#" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+
+                <ul class="nav nav-list tree">
+                    <li class="nextli">
+                        <a href="/food/query?type=位上">位上</a>
+                    </li>
+                    <li class="nextli">
+                        <a href="/food/query?type=汤菜">汤菜</a>
+                    </li>
+                    <li class="nextli">
+                        <a href="/food/query?type=海鲜">海鲜</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="ripple">
+                <a href="#" class="tree-toggle nav-header"> <span class="fa-diamond fa"></span>套餐类型<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+            </li>
+            <li class=" ripple">
+                <a href="#" class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span>订餐类别<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+            </li>
+            <li class=" ripple">
+                <a href="#" class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+            </li>
+            <li class=" ripple">
+                <a href="#" class="tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 菜品添加<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- end: Left Menu -->
+</body>
+</html>

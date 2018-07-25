@@ -1,6 +1,8 @@
 package com.opopto.zdsetmealfood.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.opopto.zdsetmealfood.entity.ZdDineType;
+import com.opopto.zdsetmealfood.helper.EncryptHelper;
 import com.opopto.zdsetmealfood.helper.ServiceParamHelper;
 import com.opopto.zdsetmealfood.service.ZdDineTypeService;
 import lombok.extern.apachecommons.CommonsLog;
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *  订餐类型
@@ -17,18 +22,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @CommonsLog
 @Controller
 @ResponseBody
-@RequestMapping("dineType")
 public class DineTypeController extends BaseApiController {
 
     @Autowired
     private ZdDineTypeService dineTypeService;
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public Object list(){
+    @RequestMapping(value = "/dineType/create", method = RequestMethod.POST)
+    public Object create(String name, String desc){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
-        result.put("data", dineTypeService.list());
+        ZdDineType dineType = new ZdDineType();
+        dineType.setName(name);
+        dineType.setCode("dt_" + System.currentTimeMillis());
+        dineType.setDesc(desc);
+        dineType.setDelFlag(0);
+        dineType = dineTypeService.create(dineType);
+        result.put("data", dineType);
         return result;
+    }
 
+    @RequestMapping(value = "/dineType", method = RequestMethod.GET)
+    public ModelAndView list(HttpServletRequest request){
+        Object user = request.getSession().getAttribute("userLogin");
+        ModelAndView model = new ModelAndView();
+        if(user == null){
+            model.setViewName("login");
+        } else {
+            model.addObject("dineTypes",dineTypeService.list());
+            model.setViewName("dineType");
+        }
+        return model;
     }
 
 }
