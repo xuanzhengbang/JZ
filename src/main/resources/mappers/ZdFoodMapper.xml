@@ -110,7 +110,9 @@
     zd_food_type ft
     WHERE
     f.type_code = ft.`code`
-    AND ft.`name` = #{name,jdbcType=VARCHAR}
+    <if test="name != null" >
+      AND ft.`name` = #{name,jdbcType=VARCHAR}
+    </if>
   </select>
 
   <select id="listAndTypeName" resultMap="BaseResultMap" >

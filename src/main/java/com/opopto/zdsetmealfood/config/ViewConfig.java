@@ -14,6 +14,7 @@ public class ViewConfig implements WebMvcConfigurer {
         registry.addViewController("/edit").setViewName("edit");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/error").setViewName("404");
+        registry.addViewController("/print").setViewName("print");
     }
 
 }

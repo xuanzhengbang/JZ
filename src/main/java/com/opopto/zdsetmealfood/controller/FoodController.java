@@ -78,6 +78,19 @@ public class FoodController extends BaseApiController {
         return model;
     }
 
+    @RequestMapping(value = "/food/list", method = RequestMethod.GET)
+    public Object listFood(String type, HttpServletRequest request){
+        Object user = request.getSession().getAttribute("userLogin");
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        if(user == null){
+            return result;
+        } else {
+            List<ZdFood> foodList = foodService.query(type);
+            result.put("data", foodList);
+            return result;
+        }
+    }
+
     @RequestMapping(value = "/food", method = RequestMethod.GET)
     public ModelAndView food(@RequestParam(defaultValue = "0")Integer pageNum, @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
