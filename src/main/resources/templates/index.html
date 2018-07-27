@@ -144,7 +144,7 @@
                   </div>
                   <hr style="border-top: 1px solid #000;" />
                   <input type="button" class="button button5 buttonDe" value="删除菜品"></input>
-                  <button type="button" class="button button5" data-toggle="modal" data-target="#myModal">打印预览</button>
+                  <button type="button" class="button button5" data-toggle="modal" data-target="#myModal" onclick="getInfo()">提交菜单</button>
                 </div>
               </div>
             </div>
@@ -162,16 +162,16 @@
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           &times;
         </button>
-        <h4 class="modal-title" id="myModalLabel">
+        <h4 class="modal-title" id="myModalLabel" style="text-align: center">
           军转大酒店菜单
         </h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="margin-left: 8%">
         <div class="form-inline">
           <div class="form-group">
             <label for="name">时间：</label>
@@ -189,24 +189,13 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="name">地点：</label>
-            <select name="place" class="form-control">
+            <select name="place" id="model_place" class="form-control">
               <option>二楼包厢</option>
-              <option>三楼包厢</option>
-              <option>吉祥厅</option>
-              <option>如意厅</option>
-              <option>二楼宴会大厅</option>
-              <option>三楼金色宴会厅</option>
-              <option>三楼多功能厅</option>
-              <option>六楼多功能厅</option>
             </select>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="name">类别：</label>
-            <select name="dineType" class="form-control">
+            <select name="dineType" id="model_dineType" class="form-control">
               <option>满月</option>
-              <option>感恩宴</option>
-              <option>谢师宴</option>
-              <option>婚宴</option>
-              <option>乔迁</option>
             </select>
           </div>
         </div><br/>
@@ -216,7 +205,7 @@
             <label for="name">标准：</label>
             <input type="number" class="form-control" style="width: 100px" placeholder="输入价格">
             <label>元/桌</label>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="name">桌数：</label>
             <input type="number" class="form-control" style="width: 70px">
             <label>-</label>
@@ -225,24 +214,8 @@
           </div>
         </div><br/>
 
-        <div class="form-inline">
-          <div class="form-group">
-
-          </div>
-        </div><br/>
-
-        <table class="table table-bordered table-hover">
+        <table id="model_table" class="table table-bordered table-hover" style="width: 86%;">
           <tbody>
-          <tr>
-            <td>
-              砂锅养身排骨汤
-            </td>
-          </tr>
-          <tr>
-            <td>
-              山菌排骨煲
-            </td>
-          </tr>
           </tbody>
         </table>
 
@@ -250,8 +223,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
         </button>
-        <button type="button" class="btn btn-primary" onclick="add()">
-          提  交
+        <button type="button" class="btn btn-primary" onclick="print()">
+          打印菜单
         </button>
       </div>
     </div><!-- /.modal-content -->
@@ -266,6 +239,7 @@
 <script src="/js/plugins/jquery.nicescroll.js"></script>
 <!-- custom -->
 <script src="/js/main.js"></script>
+<script src="/js/index_model.js"></script>
 <!-- end: Javascript -->
 <div style="text-align:center;">
 

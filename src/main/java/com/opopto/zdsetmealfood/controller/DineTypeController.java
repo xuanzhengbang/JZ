@@ -41,7 +41,7 @@ public class DineTypeController extends BaseApiController {
     }
 
     @RequestMapping(value = "/dineType", method = RequestMethod.GET)
-    public ModelAndView list(HttpServletRequest request){
+    public ModelAndView dineType(HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         if(user == null){
@@ -51,6 +51,13 @@ public class DineTypeController extends BaseApiController {
             model.setViewName("dineType");
         }
         return model;
+    }
+
+    @RequestMapping(value = "/dineType/list", method = RequestMethod.GET)
+    public Object list(){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        result.put("data", dineTypeService.list());
+        return result;
     }
 
 }
