@@ -106,38 +106,18 @@
         $("button.button7").each(function () {
             if($(this).is(".buttonDel")){
                 index=1;
-            }
-        });
-        if(index==1){
-            $(".buttonDel").remove();
-        }
-        else{
-            alert("您未选择删除菜品！");
-        }
-    });
-
-    $(".buttonDe").click(function() {
-
-
-        var index=0;
-        $("button.button7").each(function () {
-
-
-            if($(this).is(".buttonDel")){
-                index=1;
-            }
-            if(index==1){
                 var btName = $(this).text();
                 console.log("要删除的菜谱：" + btName);
                 var bts = window.localStorage.getItem("bts");
                 window.localStorage.setItem("bts", bts.replace(btName,""));
+            }
+            if(index==1){
                 $(".buttonDel").remove();
             }
-
         });
 
-
     });
+
 
     $.fn.carouselAnimate = function() {
         function doAnimations(elems) {
