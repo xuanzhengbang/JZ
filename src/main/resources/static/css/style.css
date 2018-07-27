@@ -5982,3 +5982,6 @@ ul.normal-list {
 ul.normal-list li {
 	line-height: 38px;
 }
+.buttonDel{
+	border: 2px solid black!important;
+}

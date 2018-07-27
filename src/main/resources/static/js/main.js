@@ -1,8 +1,5 @@
 (function(jQuery) {
-
-    // Variable
     var $ = jQuery;
-
     var cache = window.localStorage.getItem("bts");
     if(cache != null){
         var arr = cache.split(",");
@@ -12,36 +9,13 @@
         }
     }
 
-
-    /*$.ajax({
-        type: "get",
-        url: "food/list",
-        data: "type=" + "汤菜",
-        dataType: 'json',
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        success: function(data) {
-            console.log(data);
-            var tmp = "<button type=\"button\" class=\"button button4\" value='{0}'>{0}</button>";
-            var bts = "";
-            $.each(data.data, function(index,element){
-                bts += StringFormat(tmp, element.name);
-            });
-            console.log(bts);
-            document.getElementById("bts").innerHTML = bts;
-        }
-
-    });*/
-
-
     $.fn.ripple = function() {
         $(this).click(function(e) {
             var rippler = $(this),
                 ink = rippler.find(".ink");
-
             if(rippler.find(".ink").length === 0) {
                 rippler.append("<span class='ink'></span>");
             }
-
             ink.removeClass("animate");
             if(!ink.height() && !ink.width()) {
                 var d = Math.max(rippler.outerWidth(), rippler.outerHeight());
@@ -55,12 +29,10 @@
             ink.css({
                 top: y + 'px',
                 left: x + 'px'
-
             }).addClass("animate");
-
         });
-
     };
+
     /*sadasda*/
     $(".ripple").click(function() {
         var index = $(this).index();
@@ -115,12 +87,17 @@
     });
     //这是新添加的菜品的为删除菜单增加的jquery
     $(".addFood").on("click","#button7",function() {
+
         // $(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+
+        //$(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+
         if($(this).is(".buttonDel")) {
             $(this).removeClass("buttonDel");
         } else {
             $(this).addClass("buttonDel");
         }
+
     });
 
     //没有菜品的时候提示没有删除
@@ -137,15 +114,32 @@
         else{
             alert("您未选择删除菜品！");
         }
+=======
+
+
     });
 
     $(".buttonDe").click(function() {
-        var btName = $(".buttonDel").text();
-        console.log("要删除的菜谱：" + btName);
-        var bts = window.localStorage.getItem("bts");
-        window.localStorage.setItem("bts", bts.replace(btName,""));
 
-        $(".buttonDel").remove();
+
+        var index=0;
+        $("button.button7").each(function () {
+
+
+            if($(this).is(".buttonDel")){
+                index=1;
+            }
+            if(index==1){
+                var btName = $(this).text();
+                console.log("要删除的菜谱：" + btName);
+                var bts = window.localStorage.getItem("bts");
+                window.localStorage.setItem("bts", bts.replace(btName,""));
+                $(".buttonDel").remove();
+            }
+
+        });
+
+
     });
 
     $.fn.carouselAnimate = function() {
