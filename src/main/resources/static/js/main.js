@@ -114,9 +114,6 @@
         else{
             alert("您未选择删除菜品！");
         }
-=======
-
-
     });
 
     $(".buttonDe").click(function() {
