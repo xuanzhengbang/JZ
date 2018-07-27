@@ -83,7 +83,7 @@ public class FoodController extends BaseApiController {
         Object user = request.getSession().getAttribute("userLogin");
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
         if(user == null){
-            return result;
+            return ServiceParamHelper.createResultJSONObject(443,"Permission denied");
         } else {
             List<ZdFood> foodList = foodService.query(type);
             result.put("data", foodList);
