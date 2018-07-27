@@ -102,13 +102,41 @@
             $(".addFood").append("<button class='button button5 button7' id='button7'>" + arr[i] + "</button>")
         }
     });
+
     //删除菜品,先添加属性再删除
-    $(".button7").click(function() {
-        $(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+
+    $(".button7").on("click","#button7",function() {
+        //$(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+        if($(this).is(".buttonDel")) {
+            $(this).removeClass("buttonDel");
+        } else {
+            $(this).addClass("buttonDel");
+        }
+    });
+    //这是新添加的菜品的为删除菜单增加的jquery
+    $(".addFood").on("click","#button7",function() {
+        // $(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+        if($(this).is(".buttonDel")) {
+            $(this).removeClass("buttonDel");
+        } else {
+            $(this).addClass("buttonDel");
+        }
     });
 
-    $(".addFood").on("click","#button7",function() {
-        $(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+    //没有菜品的时候提示没有删除
+    $(".buttonDe").click(function () {
+        var index=0;
+        $("button.button7").each(function () {
+            if($(this).is(".buttonDel")){
+                index=1;
+            }
+        });
+        if(index==1){
+            $(".buttonDel").remove();
+        }
+        else{
+            alert("您未选择删除菜品！");
+        }
     });
 
     $(".buttonDe").click(function() {

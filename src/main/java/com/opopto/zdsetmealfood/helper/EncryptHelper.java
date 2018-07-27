@@ -36,4 +36,8 @@ public class EncryptHelper {
         return "u_" + UUID.randomUUID().toString().replace("-","");
     }
 
+/*    public static void  main(String[] args){
+        System.out.print(  MD5("123456")
+        );
+    }*/
 }

@@ -10,7 +10,10 @@ ul,li {
 	padding: 0;
 	margin: 0;
 }
-
+/*删除del的显示*/
+.buttonDel{
+	border: 2px solid black!important;
+}
 /*sdasda*/
 .button {
 	background-color: #4CAF50; /* Green */
