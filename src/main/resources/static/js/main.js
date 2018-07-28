@@ -43,7 +43,7 @@
         $(this).addClass("nextlili").siblings().removeClass("nextlili");
     });
     /*这是button按钮点击事件*/
-    $(".button4").click(function() {
+    $(".button4").on("click",function() {
         var index = $(this).index();
         if($(this).is(".button6")) {
             $(this).removeClass("button6");
@@ -51,11 +51,11 @@
             $(this).addClass("button6");
         }
     });
-    /*添加颜色属性*/
 
+    /*动态获取js*/
 
     /*这是提交订单事件*/
-    $(".busubmit").click(function() {
+    $(".busubmit").on("click",function() {
         var arr = new Array();
         //通过获取点击添加的css查找选中的按钮
         $("button.button6").each(function() {

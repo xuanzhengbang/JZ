@@ -5883,7 +5883,7 @@ ul li a:focus {
 	content: attr(data-title);
 }
 .search-nav {
-	display: none !Im;
+	display: none !important;
 }
 #quote-carousel .carousel-indicators {
 	bottom: -20px !important;
@@ -5918,7 +5918,7 @@ ul li a:focus {
 	position: absolute !important;
 	left: -120px !important;
 }
-}
+
 
 
 .tab-content .head {
@@ -5933,7 +5933,6 @@ ul li a:focus {
 	content: " ";
 	position: absolute;
 	left: 35%;
-}
 }
 
 @media only screen and (max-width: 479px) {
