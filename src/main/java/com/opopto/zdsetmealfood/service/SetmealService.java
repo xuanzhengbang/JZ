@@ -2,17 +2,15 @@ package com.opopto.zdsetmealfood.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.opopto.zdsetmealfood.dao.ZdFoodMapper;
-import com.opopto.zdsetmealfood.dao.ZdSetmealItemMapper;
-import com.opopto.zdsetmealfood.dao.ZdSetmealMapper;
-import com.opopto.zdsetmealfood.entity.ZdSetmeal;
-import com.opopto.zdsetmealfood.entity.ZdSetmealExample;
-import com.opopto.zdsetmealfood.entity.ZdSetmealItem;
-import com.opopto.zdsetmealfood.entity.ZdSetmealItemExample;
+import com.opopto.zdsetmealfood.dao.*;
+import com.opopto.zdsetmealfood.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SetmealService {
@@ -23,6 +21,10 @@ public class SetmealService {
     private ZdSetmealItemMapper setmealItemMapper;
     @Autowired
     private ZdFoodMapper foodMapper;
+    @Autowired
+    private ZdPlaceMapper placeMapper;
+    @Autowired
+    private ZdDineTypeMapper dineTypeMapper;
 
     public void create(ZdSetmeal setmeal, List<ZdSetmealItem> items){
         //TODO  批量插入、批量查询优化点
@@ -38,21 +40,26 @@ public class SetmealService {
         }
     }
 
-    public Object list(){
+    public List<ZdSetmeal> list(){
         //TODO 优化点-查询
         ZdSetmealExample example = new ZdSetmealExample();
-        example.createCriteria().andDelFlagEqualTo(0);
+        example.createCriteria()
+                .andDelFlagEqualTo(0);
         List<ZdSetmeal> setmealList = setmealMapper.selectByExample(example);
 
-        JSONArray array = new JSONArray();
+
+        List<ZdSetmeal> result = new ArrayList<>();
+
         for(ZdSetmeal setmeal : setmealList){
-            JSONObject object = (JSONObject) JSONObject.toJSON(setmeal);
             ZdSetmealItemExample itemExample = new ZdSetmealItemExample();
-            itemExample.createCriteria().andSetmealCodeEqualTo(setmeal.getCode()).andDelFlagEqualTo(0);
-            object.put("items", setmealItemMapper.selectByExample(itemExample));
-            array.add(object);
+            itemExample.createCriteria()
+                    .andSetmealCodeEqualTo(setmeal.getCode())
+                    .andDelFlagEqualTo(0);
+            setmeal.setItems(setmealItemMapper.selectByExample(itemExample));
+            result.add(setmeal);
         }
-        return array;
+
+        return result;
     }
 
 }

@@ -72,11 +72,11 @@
         <li class="ripple">
           <a href="/foodType" class="sub-tree-toggle nav-header"> <span class="fa-diamond fa"></span>菜品类型<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
-        <li class="active ripple">
+        <li class="ripple">
           <a href="/food" class="sub-tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 菜品添加<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
-        <li class=" ripple">
-          <a href="#" class="sub-tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        <li class="active ripple">
+          <a href="/setmeal" class="sub-tree-toggle nav-header"><span class="fa fa-calendar-o"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
       </ul>
     </div>
@@ -94,37 +94,38 @@
       </div>
     </div>
     <div id="contents" style="background: white; padding: 5% 8%; margin: 3% 0 0 10%; width: 80%; height: auto;">
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">添加菜品</button>
       <table class="table" >
-        <caption style="font-size: x-large; text-align: center; margin-bottom: 1%;">菜品列表</caption>
+        <caption style="font-size: x-large; text-align: center; margin-bottom: 1%;">套餐列表</caption>
         <thead>
         <tr>
           <th>编号</th>
-          <th>名称</th>
+          <th>时间</th>
+          <th>地点</th>
           <th>类别</th>
-          <th>创建时间</th>
-          <th>备注</th>
-          <th>操作</th>
+          <th>标准</th>
+          <th>桌数</th>
+          <th>更多</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item : ${ foods }">
+        <tr th:each="item : ${ setmeals }">
           <td th:text="${ item.id }"></td>
-          <td th:text="${ item.name }"></td>
-          <td th:text="${ item.typeName }"></td>
-          <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-          <td th:text="${ item.desc }"></td>
+          <td th:text="${ item.bookDate }"></td>
+          <td th:text="${ item.place }"></td>
+          <td th:text="${ item.dineType }"></td>
+          <td th:text="${ item.price }"></td>
+          <td th:text="${ item.num }"></td>
           <td>
-            <button type="button" class="btn btn-danger" th:id="${item.id}">删除</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">更多</button>
           </td>
         </tr>
         </tbody>
       </table><br/>
 
       <ul class="pagination">
-        <li><a th:href="${ pageNum-1<1 ? '/food?pageNum='+1 : '/food?pageNum='+ (pageNum-1) }">&laquo;</a></li>
-        <li th:each="i : ${ #numbers.sequence(1,total) }" th:class="${ i==pageNum ? 'active':'' }"><a th:href="${'/food?pageNum='+i}" th:text="${i}"></a></li>
-        <li><a th:href="${ pageNum+1 > total ? '/food?pageNum=' + total : '/food?pageNum=' + (pageNum+1) }">&raquo;</a></li>
+        <li><a th:href="${ pageNum-1<1 ? '/setmeal?pageNum='+1 : '/setmeal?pageNum='+ (pageNum-1) }">&laquo;</a></li>
+        <li th:each="i : ${ #numbers.sequence(1,total) }" th:class="${ i==pageNum ? 'active':'' }"><a th:href="${'/setmeal?pageNum='+i}" th:text="${i}"></a></li>
+        <li><a th:href="${ pageNum+1 > total ? '/setmeal?pageNum=' + total : '/setmeal?pageNum=' + (pageNum+1) }">&raquo;</a></li>
       </ul>
     </div>
   </div>
@@ -147,10 +148,6 @@
       <div class="modal-body">
         <input type="text" class="form-control" id="new_food_name" placeholder="请输入名称" /><br/>
         <select class="form-control" id="new_food_type" placeholder="菜品分类">
-
-          <option th:each="type : ${types}"
-                  th:value="${type.code}"
-                  th:utext="${type.name}"/>
         </select><br/>
         <input type="text" class="form-control" id="new_food_desc" placeholder="备注信息" /><br/>
       </div>
@@ -174,16 +171,6 @@
 <script src="/js/plugins/jquery.nicescroll.js"></script>
 <script src="/js/main.js"></script>
 <script>
-
-    $('#myModal').on('shown.bs.modal', function () {
-        var $this = $(this);
-        var dialog = $this.find('.modal-dialog');
-        var top = ($(window).height() - dialog.height()) / 2;
-        dialog.css({
-            marginTop:top
-        });
-
-    });
     function add() {
         //获取模态框数据
         var name = $('#new_food_name').val();

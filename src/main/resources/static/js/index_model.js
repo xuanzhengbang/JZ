@@ -30,6 +30,10 @@ function getInfo() {
     }
     
 }
-function print() {
-
+function printOrder() {
+    var startStr = "<!--startprint-->";
+    var endStr = "<!--endprint-->";
+    var printHtml = document.getElementById("myModal").innerHTML;
+    window.document.body.innerHTML = printHtml;
+    window.print();
 }

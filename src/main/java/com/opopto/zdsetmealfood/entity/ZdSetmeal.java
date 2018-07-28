@@ -3,6 +3,7 @@ package com.opopto.zdsetmealfood.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class ZdSetmeal implements Serializable {
     private Integer id;
@@ -11,11 +12,11 @@ public class ZdSetmeal implements Serializable {
 
     private BigDecimal price;
 
-    private Date bookDate;
+    private String bookDate;
 
-    private String placeCode;
+    private String place;
 
-    private String dineTypeCode;
+    private String dineType;
 
     private String num;
 
@@ -28,6 +29,8 @@ public class ZdSetmeal implements Serializable {
     private Date updateTime;
 
     private String desc;
+
+    private List<ZdSetmealItem> items;
 
     private static final long serialVersionUID = 1L;
 
@@ -55,28 +58,28 @@ public class ZdSetmeal implements Serializable {
         this.price = price;
     }
 
-    public Date getBookDate() {
+    public String getBookDate() {
         return bookDate;
     }
 
-    public void setBookDate(Date bookDate) {
+    public void setBookDate(String bookDate) {
         this.bookDate = bookDate;
     }
 
-    public String getPlaceCode() {
-        return placeCode;
+    public String getPlace() {
+        return place;
     }
 
-    public void setPlaceCode(String placeCode) {
-        this.placeCode = placeCode == null ? null : placeCode.trim();
+    public void setPlace(String place) {
+        this.place = place;
     }
 
-    public String getDineTypeCode() {
-        return dineTypeCode;
+    public String getDineType() {
+        return dineType;
     }
 
-    public void setDineTypeCode(String dineTypeCode) {
-        this.dineTypeCode = dineTypeCode == null ? null : dineTypeCode.trim();
+    public void setDineType(String dineType) {
+        this.dineType = dineType;
     }
 
     public String getNum() {
@@ -127,6 +130,14 @@ public class ZdSetmeal implements Serializable {
         this.desc = desc == null ? null : desc.trim();
     }
 
+    public List<ZdSetmealItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ZdSetmealItem> items) {
+        this.items = items;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -137,8 +148,6 @@ public class ZdSetmeal implements Serializable {
         sb.append(", code=").append(code);
         sb.append(", price=").append(price);
         sb.append(", bookDate=").append(bookDate);
-        sb.append(", placeCode=").append(placeCode);
-        sb.append(", dineTypeCode=").append(dineTypeCode);
         sb.append(", num=").append(num);
         sb.append(", createUid=").append(createUid);
         sb.append(", delFlag=").append(delFlag);

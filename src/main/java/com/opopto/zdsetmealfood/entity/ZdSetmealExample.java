@@ -393,18 +393,18 @@ public class ZdSetmealExample {
             return (Criteria) this;
         }
 
-        public Criteria andPlaceCodeEqualTo(String value) {
-            addCriterion("place_code =", value, "placeCode");
+        public Criteria andPlaceEqualTo(String value) {
+            addCriterion("place =", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceCodeNotEqualTo(String value) {
-            addCriterion("place_code <>", value, "placeCode");
+        public Criteria andPlaceNotEqualTo(String value) {
+            addCriterion("place <>", value, "place");
             return (Criteria) this;
         }
 
-        public Criteria andPlaceCodeGreaterThan(String value) {
-            addCriterion("place_code >", value, "placeCode");
+        public Criteria andPlaceGreaterThan(String value) {
+            addCriterion("place >", value, "place");
             return (Criteria) this;
         }
 
@@ -453,58 +453,58 @@ public class ZdSetmealExample {
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeIsNull() {
-            addCriterion("dine_type_code is null");
+        public Criteria andDineTypeIsNull() {
+            addCriterion("dine_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeIsNotNull() {
-            addCriterion("dine_type_code is not null");
+        public Criteria andDineTypeIsNotNull() {
+            addCriterion("dine_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeEqualTo(String value) {
-            addCriterion("dine_type_code =", value, "dineTypeCode");
+        public Criteria andDineTypeEqualTo(String value) {
+            addCriterion("dine_type =", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeNotEqualTo(String value) {
-            addCriterion("dine_type_code <>", value, "dineTypeCode");
+        public Criteria andDineTypeNotEqualTo(String value) {
+            addCriterion("dine_type <>", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeGreaterThan(String value) {
-            addCriterion("dine_type_code >", value, "dineTypeCode");
+        public Criteria andDineTypeGreaterThan(String value) {
+            addCriterion("dine_type >", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("dine_type_code >=", value, "dineTypeCode");
+        public Criteria andDineTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("dine_type >=", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeLessThan(String value) {
-            addCriterion("dine_type_code <", value, "dineTypeCode");
+        public Criteria andDineTypeLessThan(String value) {
+            addCriterion("dine_type <", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeLessThanOrEqualTo(String value) {
-            addCriterion("dine_type_code <=", value, "dineTypeCode");
+        public Criteria andDineTypeLessThanOrEqualTo(String value) {
+            addCriterion("dine_type <=", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeLike(String value) {
-            addCriterion("dine_type_code like", value, "dineTypeCode");
+        public Criteria andDineTypeLike(String value) {
+            addCriterion("dine_type like", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeNotLike(String value) {
-            addCriterion("dine_type_code not like", value, "dineTypeCode");
+        public Criteria andDineTypeNotLike(String value) {
+            addCriterion("dine_type not like", value, "dineType");
             return (Criteria) this;
         }
 
-        public Criteria andDineTypeCodeIn(List<String> values) {
-            addCriterion("dine_type_code in", values, "dineTypeCode");
+        public Criteria andDineTypeIn(List<String> values) {
+            addCriterion("dine_type in", values, "dineType");
             return (Criteria) this;
         }
 

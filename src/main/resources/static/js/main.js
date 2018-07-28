@@ -57,13 +57,24 @@
     /*这是提交订单事件*/
     $(".busubmit").on("click",function() {
         var arr = new Array();
+        var bts = window.localStorage.getItem("bts");
+        var res = "";
         //通过获取点击添加的css查找选中的按钮
         $("button.button6").each(function() {
             var a = $(this).text();
+            if(bts.indexOf(a) != -1){
+                if(res=="")
+                    res = a;
+                else
+                    res += "，" + a;
+            }
             $(this).removeClass("button6");
             arr.push(a);
         });
-        var bts = window.localStorage.getItem("bts");
+        if(res != null && res != "" && res != undefined){
+            alert(res + "已添加");
+            return;
+        }
         if(bts != null && bts != "" && bts != "null"){
             bts += "," + arr;
         } else {

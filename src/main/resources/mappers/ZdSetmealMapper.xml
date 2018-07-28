@@ -5,9 +5,9 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
-    <result column="book_date" property="bookDate" jdbcType="DATE" />
-    <result column="place_code" property="placeCode" jdbcType="VARCHAR" />
-    <result column="dine_type_code" property="dineTypeCode" jdbcType="VARCHAR" />
+    <result column="book_date" property="bookDate" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="dine_type" property="dineType" jdbcType="VARCHAR" />
     <result column="num" property="num" jdbcType="VARCHAR" />
     <result column="create_uid" property="createUid" jdbcType="VARCHAR" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, code, price, book_date, place_code, dine_type_code, num, create_uid, del_flag, 
+    id, code, price, book_date, place, dine_type, num, create_uid, del_flag,
     create_time, update_time, `desc`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.opopto.zdsetmealfood.entity.ZdSetmealExample" >
@@ -113,11 +113,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into zd_setmeal (code, price, book_date, 
-      place_code, dine_type_code, num, 
+      place, dine_type, num,
       create_uid, del_flag, create_time, 
       update_time, `desc`)
-    values (#{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookDate,jdbcType=DATE}, 
-      #{placeCode,jdbcType=VARCHAR}, #{dineTypeCode,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, 
+    values (#{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookDate,jdbcType=VARCHAR},
+      #{place,jdbcType=VARCHAR}, #{dineType,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR},
       #{createUid,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR})
   </insert>
@@ -136,11 +136,11 @@
       <if test="bookDate != null" >
         book_date,
       </if>
-      <if test="placeCode != null" >
-        place_code,
+      <if test="place != null" >
+        place,
       </if>
-      <if test="dineTypeCode != null" >
-        dine_type_code,
+      <if test="dineType != null" >
+        dine_type,
       </if>
       <if test="num != null" >
         num,
@@ -169,13 +169,13 @@
         #{price,jdbcType=DECIMAL},
       </if>
       <if test="bookDate != null" >
-        #{bookDate,jdbcType=DATE},
+        #{bookDate,jdbcType=VARCHAR},
       </if>
-      <if test="placeCode != null" >
-        #{placeCode,jdbcType=VARCHAR},
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
       </if>
-      <if test="dineTypeCode != null" >
-        #{dineTypeCode,jdbcType=VARCHAR},
+      <if test="dineType != null" >
+        #{dineType,jdbcType=VARCHAR},
       </if>
       <if test="num != null" >
         #{num,jdbcType=VARCHAR},
@@ -216,13 +216,13 @@
         price = #{record.price,jdbcType=DECIMAL},
       </if>
       <if test="record.bookDate != null" >
-        book_date = #{record.bookDate,jdbcType=DATE},
+        book_date = #{record.bookDate,jdbcType=VARCHAR},
       </if>
-      <if test="record.placeCode != null" >
-        place_code = #{record.placeCode,jdbcType=VARCHAR},
+      <if test="record.place != null" >
+        place = #{record.place,jdbcType=VARCHAR},
       </if>
-      <if test="record.dineTypeCode != null" >
-        dine_type_code = #{record.dineTypeCode,jdbcType=VARCHAR},
+      <if test="record.dineType != null" >
+        dine_type = #{record.dineType,jdbcType=VARCHAR},
       </if>
       <if test="record.num != null" >
         num = #{record.num,jdbcType=VARCHAR},
@@ -252,9 +252,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       code = #{record.code,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
-      book_date = #{record.bookDate,jdbcType=DATE},
-      place_code = #{record.placeCode,jdbcType=VARCHAR},
-      dine_type_code = #{record.dineTypeCode,jdbcType=VARCHAR},
+      book_date = #{record.bookDate,jdbcType=VARCHAR},
+      place = #{record.place,jdbcType=VARCHAR},
+      dine_type = #{record.dineType,jdbcType=VARCHAR},
       num = #{record.num,jdbcType=VARCHAR},
       create_uid = #{record.createUid,jdbcType=VARCHAR},
       del_flag = #{record.delFlag,jdbcType=INTEGER},
@@ -275,13 +275,13 @@
         price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="bookDate != null" >
-        book_date = #{bookDate,jdbcType=DATE},
+        book_date = #{bookDate,jdbcType=VARCHAR},
       </if>
-      <if test="placeCode != null" >
-        place_code = #{placeCode,jdbcType=VARCHAR},
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
       </if>
-      <if test="dineTypeCode != null" >
-        dine_type_code = #{dineTypeCode,jdbcType=VARCHAR},
+      <if test="dineType != null" >
+        dine_type = #{dineType,jdbcType=VARCHAR},
       </if>
       <if test="num != null" >
         num = #{num,jdbcType=VARCHAR},
@@ -308,9 +308,9 @@
     update zd_setmeal
     set code = #{code,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
-      book_date = #{bookDate,jdbcType=DATE},
-      place_code = #{placeCode,jdbcType=VARCHAR},
-      dine_type_code = #{dineTypeCode,jdbcType=VARCHAR},
+      book_date = #{bookDate,jdbcType=VARCHAR},
+      place = #{place,jdbcType=VARCHAR},
+      dine_type = #{dineType,jdbcType=VARCHAR},
       num = #{num,jdbcType=VARCHAR},
       create_uid = #{createUid,jdbcType=VARCHAR},
       del_flag = #{delFlag,jdbcType=INTEGER},

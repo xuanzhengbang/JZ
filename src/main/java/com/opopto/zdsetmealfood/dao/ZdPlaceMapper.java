@@ -20,6 +20,8 @@ public interface ZdPlaceMapper {
 
     ZdPlace selectByPrimaryKey(Integer id);
 
+    List<ZdPlace> listAll();
+
     int updateByExampleSelective(@Param("record") ZdPlace record, @Param("example") ZdPlaceExample example);
 
     int updateByExample(@Param("record") ZdPlace record, @Param("example") ZdPlaceExample example);
