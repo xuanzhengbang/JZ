@@ -11,6 +11,7 @@ ul,li {
 	margin: 0;
 }
 /*删除del的显示*/
+
 .buttonDel{
 	border: 2px solid black!important;
 }
@@ -1812,9 +1813,9 @@ ul li a:focus {
 	list-style: none;
 }
 .navbar {
-	height: 80px;
+	height: 114px;
 	background-image: url(../img/back.jpg);
-	background-size:100% 80px;
+	background-size:100% 115px;
 	background-repeat:no-repeat;
 	color: #fff;
 	border: none;
@@ -1951,11 +1952,11 @@ ul li a:focus {
 #left-menu .left-bg {
 	background: url('../img/left-bg.png');
 	background-repeat: repeat-x;
-	margin-top: 20px;
+	margin-top: 58px;
 	height: 100px;
 	left: 0;
 	position: relative;
-	margin-left: -4px;
+	margin-left: -2px;
 }
 #left-menu .sub-left-menu {
 	background-color: #fff;
@@ -2589,12 +2590,12 @@ ul li a:focus {
 	display: inline-block;
 }
 #content {
-	margin-top: 51px;
+	margin-top: 100px;
 	padding: 0px;
 	padding-bottom: 10px;
 	padding-left: 230px;
 	width: 100%;
-	color: #918C8C;
+	color: #333;
 }
 .input-group-addon, .user-photo, .btn, .cover-v1, .nav-tabs.nav-tabs-v2, .tabs-area, .mail-wrapper, .mail-reply, .panel, .thumbnail, .navbar {
 	-webkit-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
