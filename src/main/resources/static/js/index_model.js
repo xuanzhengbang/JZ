@@ -61,6 +61,10 @@ $(".btn-primary").on("click",function () {
 
 
 
+    var endTable=$("#Etable").val();
+
+
+
     if( !$("table tr:visible").length){
         $("#showError").empty();
         $("#showError").append("<span>您没有选择菜品！</span>");
@@ -70,10 +74,14 @@ $(".btn-primary").on("click",function () {
     }else if(!price){
         $("#showError").empty();
         $("#showError").append("<span>您没填写菜品价格！</span>");
+
     }else if(!(startTable)){
         $("#showError").empty();
         $("#showError").append("<span>您没选择桌位！</span>");
     }else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
+
+    }else if(storage(date,bookDate,place,model_dineType,price,startTable,endTable)){ //判断完毕后再进行打印
+
         var startStr = "<!--startprint-->";
         var endStr = "<!--endprint-->";
         var printHtml = document.getElementById("myModal").innerHTML;
@@ -87,7 +95,9 @@ $(".btn-primary").on("click",function () {
 //根据ajax请求判断是否成功插入数据库
 function storage(date,book,place,model_dineType,price,startTable,endTable){
         var bookDate=date+" "+book;
+
         var num=startTable;
+        
        // 获取表格内所有的内容
        var arr = new Array();
         $("table#model_table").find("td").each(function () {
