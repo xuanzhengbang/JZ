@@ -59,12 +59,6 @@ $(".btn-primary").on("click",function () {
     var price=$("#price").val();
     var startTable=$("#Stable").val();
 
-
-
-    var endTable=$("#Etable").val();
-
-
-
     if( !$("table tr:visible").length){
         $("#showError").empty();
         $("#showError").append("<span>您没有选择菜品！</span>");
@@ -93,11 +87,11 @@ $(".btn-primary").on("click",function () {
     }
 });
 //根据ajax请求判断是否成功插入数据库
-function storage(date,book,place,model_dineType,price,startTable,endTable){
+function storage(date,book,place,model_dineType,price,startTable){
         var bookDate=date+" "+book;
 
         var num=startTable;
-        
+
        // 获取表格内所有的内容
        var arr = new Array();
         $("table#model_table").find("td").each(function () {
@@ -110,17 +104,16 @@ function storage(date,book,place,model_dineType,price,startTable,endTable){
         con["place"]=place;
         con["dineType"]=model_dineType;
         con["num"]=num;
+
         var JsonObj=JSON.stringify(con);
-        var jsobj=[];
-        jsobj.push(con);
+        var obj=JSON.parse(JsonObj);
+        var a=new Array()
         for(var i in arr){
-            var it={
-                item:arr;
-            }
-            jsobj.push(it);
+
+            JsonObj.item=arr[i];
         }
         var flag=0;
-        console.log(JSON.stringify(jsobj));
+        console.log(JsonObj);
 
 
        $.ajax({
