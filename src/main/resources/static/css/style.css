@@ -5985,6 +5985,6 @@ ul.normal-list li {
 .buttonDel{
 	border: 2px solid black!important;
 }
-td {
+th, td {
 	text-align: center;
 }

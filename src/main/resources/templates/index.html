@@ -202,12 +202,12 @@
           <div class="form-group">
             <label for="name">标准：</label>
 
-            <input type="number" class="form-control" id="price" style="width: 100px"  onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="输入价格">
+            <input type="number" min="100" max="9999" class="form-control" id="price" style="width: 100px"  onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="输入价格">
 
             <label>元/桌</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="name">桌数：</label>
-            <input type="number" class="form-control" id="Stable" style="width: 70px">
+            <input type="number" min="1" max="99" class="form-control" id="Stable" style="width: 70px">
             <label>桌</label>
           </div>
         </div><br/>

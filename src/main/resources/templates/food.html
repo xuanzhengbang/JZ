@@ -104,7 +104,7 @@
           <th>类别</th>
           <th>创建时间</th>
           <th>备注</th>
-          <th>操作</th>
+          <!--<th>操作</th>-->
         </tr>
         </thead>
         <tbody>
@@ -114,9 +114,9 @@
           <td th:text="${ item.typeName }"></td>
           <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td th:text="${ item.desc }"></td>
-          <td>
+          <!--<td>
             <button type="button" class="btn btn-danger" th:id="${item.id}">删除</button>
-          </td>
+          </td>-->
         </tr>
         </tbody>
       </table><br/>
