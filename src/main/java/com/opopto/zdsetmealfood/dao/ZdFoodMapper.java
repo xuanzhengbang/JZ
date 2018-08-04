@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface ZdFoodMapper {
     int countByExample(ZdFoodExample example);
@@ -32,7 +33,7 @@ public interface ZdFoodMapper {
 
     ZdFood selectByName(@Param("name") String name);
 
-    List<ZdFood> query(@Param("name") String name);
+    List<ZdFood> query(@Param("type") String type, @Param("foodName") String foodName);
 
     List<ZdFood> listAndTypeName();
 

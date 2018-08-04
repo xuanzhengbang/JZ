@@ -110,8 +110,11 @@
     zd_food_type ft
     WHERE
     f.type_code = ft.`code`
-    <if test="name != null" >
-      AND ft.`name` = #{name,jdbcType=VARCHAR}
+    <if test="type != null" >
+      AND ft.`name` = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="foodName != null" >
+      AND f.`name` like  concat('%',#{foodName} ,'%')
     </if>
   </select>
 

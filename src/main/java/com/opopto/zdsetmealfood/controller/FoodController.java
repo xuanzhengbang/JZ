@@ -62,13 +62,15 @@ public class FoodController extends BaseApiController {
     }
 
     @RequestMapping(value = "/food/query", method = RequestMethod.GET)
-    public ModelAndView query(String type, HttpServletRequest request){
+    public ModelAndView query(String type, @RequestParam(defaultValue = "#", required = false) String foodName, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         if(StringUtils.isEmpty(type)){
             return model;
         }
-        List<ZdFood> foodList = foodService.query(type);
+        if(foodName=="#")
+            foodName = null;
+        List<ZdFood> foodList = foodService.query(type,foodName);
         if(user == null){
             model.setViewName("login");
         } else {
@@ -85,7 +87,7 @@ public class FoodController extends BaseApiController {
         if(user == null){
             return ServiceParamHelper.createResultJSONObject(443,"Permission denied");
         } else {
-            List<ZdFood> foodList = foodService.query(type);
+            List<ZdFood> foodList = foodService.query(type,null);
             result.put("data", foodList);
             return result;
         }
