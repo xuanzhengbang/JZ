@@ -62,13 +62,14 @@ public class FoodController extends BaseApiController {
     }
 
     @RequestMapping(value = "/food/query", method = RequestMethod.GET)
-    public ModelAndView query(String type, @RequestParam(defaultValue = "#", required = false) String foodName, HttpServletRequest request){
+    public ModelAndView query(@RequestParam(required = false)String type, @RequestParam(required = false) String foodName, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
-        if(StringUtils.isEmpty(type)){
-            return model;
+        if(StringUtils.isEmpty(type)||type=="*"){
+            type = null;
         }
-        if(foodName=="#")
+
+        if(foodName=="*")
             foodName = null;
         List<ZdFood> foodList = foodService.query(type,foodName);
         if(user == null){
