@@ -61,6 +61,19 @@ public class FoodController extends BaseApiController {
         return model;
     }
 
+    @RequestMapping(value = "/food/query.json", method = RequestMethod.GET)
+    public Object queryJson(@RequestParam(required = false) String type, @RequestParam(required = false) String foodName){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        if(type=="*"){
+            type = null;
+        }
+        if(foodName == "*"){
+            foodName = null;
+        }
+        result.put("data", foodService.query(type,foodName));
+        return result;
+    }
+
     @RequestMapping(value = "/food/query", method = RequestMethod.GET)
     public ModelAndView query(@RequestParam(required = false)String type, @RequestParam(required = false) String foodName, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
