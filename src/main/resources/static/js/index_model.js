@@ -72,46 +72,42 @@ $(".btn-primary").on("click",function () {
     }else if(!(startTable)){
         $("#showError").empty();
         $("#showError").append("<span>您没选择桌位！</span>");
-    //}else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
-
-    }else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
-
-        var startStr = "<!--startprint-->";
-        var endStr = "<!--endprint-->";
-        var printHtml = document.getElementById("myModal").innerHTML;
-        window.document.body.innerHTML = printHtml;
-        window.print();
     }else{
-        $("#showError").empty();
-        $("#showError").append("<span>数据保存不成功！</span>");
+        storage(date,bookDate,place,model_dineType,price,startTable);
     }
+        //判断完毕后再进行打印
 
-    post_create_setmeal(date,bookDate,place,model_dineType,price,startTable,["清汤甲鱼","年糕炒蟹块","蛋黄焗蟹"])
+    // post_create_setmeal(date,bookDate,place,model_dineType,price,startTable,["清汤甲鱼","年糕炒蟹块","蛋黄焗蟹"])
 
 });
 //根据ajax请求判断是否成功插入数据库
 function storage(date,book,place,model_dineType,price,startTable){
         var bookDate=date+" "+book;
-
         var num=startTable;
-
        // 获取表格内所有的内容
        var foods = [];
         $("table#model_table").find("td").each(function () {
             foods.push($(this).text());
         });
 
-        var flag=0;
-
        $.ajax({
             type: "post",
             url: "/setmeal/create",
             data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&num="+num+"&price="+price+"&foods="+foods,
-            dataType: "html",
+            dataType: "text",
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
-                flag=1;
-             }
+                //
+                var startStr = "<!--startprint-->";
+                var endStr = "<!--endprint-->";
+                var printHtml = document.getElementById("myModal").innerHTML;
+                window.document.body.innerHTML = printHtml;
+                window.print();
+             },
+           error:function(result){
+               $("#showError").empty();
+               $("#showError").append("<span>数据保存不成功！</span>");
+
+           }
        });
-       return flag;
 }
