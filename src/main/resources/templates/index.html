@@ -302,7 +302,6 @@
             var foodname= $("#input_search").val();
             var foodtype=$(".nextlili").find("#nexthref").text();
             if(foodname != null && foodname != ""){
-
                 $.ajax({
                     type: "get",
                     url:  "/food/query.json?type="+foodtype+"&foodName="+foodname,
