@@ -72,9 +72,9 @@ $(".btn-primary").on("click",function () {
     }else if(!(startTable)){
         $("#showError").empty();
         $("#showError").append("<span>您没选择桌位！</span>");
-    }else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
+    //}else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
 
-    }else if(storage(date,bookDate,place,model_dineType,price,startTable,endTable)){ //判断完毕后再进行打印
+    }else if(storage(date,bookDate,place,model_dineType,price,startTable)){ //判断完毕后再进行打印
 
         var startStr = "<!--startprint-->";
         var endStr = "<!--endprint-->";
@@ -85,6 +85,9 @@ $(".btn-primary").on("click",function () {
         $("#showError").empty();
         $("#showError").append("<span>数据保存不成功！</span>");
     }
+
+    post_create_setmeal(date,bookDate,place,model_dineType,price,startTable,["清汤甲鱼","年糕炒蟹块","蛋黄焗蟹"])
+
 });
 //根据ajax请求判断是否成功插入数据库
 function storage(date,book,place,model_dineType,price,startTable){
@@ -93,35 +96,19 @@ function storage(date,book,place,model_dineType,price,startTable){
         var num=startTable;
 
        // 获取表格内所有的内容
-       var arr = new Array();
+       var foods = [];
         $("table#model_table").find("td").each(function () {
-            //保存内容
-            arr.push({"foodName":$(this).text()});
+            foods.push($(this).text());
         });
-        var con={};
-        con["price"]=price;
-        con["bookDate"]=bookDate;
-        con["place"]=place;
-        con["dineType"]=model_dineType;
-        con["num"]=num;
 
-        var JsonObj=JSON.stringify(con);
-        var obj=JSON.parse(JsonObj);
-        var a=new Array()
-        for(var i in arr){
-
-            JsonObj.item=arr[i];
-        }
         var flag=0;
-        console.log(JsonObj);
-
 
        $.ajax({
             type: "post",
             url: "/setmeal/create",
-            data:  JSON.stringify(con),
-            dataType: "json",
-            contentType: "application/json;charset=utf-8",
+            data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&num="+num+"&price="+price+"&foods="+foods,
+            dataType: "html",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
                 flag=1;
              }

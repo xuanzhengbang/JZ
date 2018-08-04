@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -31,15 +34,21 @@ public class SetmealController extends BaseApiController {
     private SetmealService setmealService;
 
     @RequestMapping(value = "/setmeal/create", method = RequestMethod.POST)
-    public Object create(JSONObject requestJson){
+    public Object create(String bookDate, String place, String dineType, Integer num, Integer price, String[] foods){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
         ZdSetmeal setmeal = new ZdSetmeal();
-        setmeal.setPrice(requestJson.getBigDecimal("price"));
-        setmeal.setBookDate(requestJson.getString("bookDate"));
-        setmeal.setPlace(requestJson.getString("place"));
-        setmeal.setDineType(requestJson.getString("dineType"));
-        setmeal.setNum(requestJson.getString("num"));
-        List<ZdSetmealItem> itemList = JSONArray.parseArray(requestJson.getJSONArray("item").toJSONString(),ZdSetmealItem.class);
+        setmeal.setPrice(BigDecimal.valueOf(price));
+        setmeal.setBookDate(bookDate);
+        setmeal.setPlace(place);
+        setmeal.setDineType(dineType);
+        setmeal.setNum(num+"");
+        List<ZdSetmealItem> itemList = new ArrayList<>();
+        for(String s : foods){
+            ZdSetmealItem item = new ZdSetmealItem();
+            item.setFoodName(s);
+            item.setCreateTime(new Date());
+            itemList.add(item);
+        }
 
         setmealService.create(setmeal, itemList);
 
