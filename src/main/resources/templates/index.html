@@ -301,7 +301,7 @@
             //    获取输入框中的菜品名称
             var foodname= $("#input_search").val();
             var foodtype=$(".nextlili").find("#nexthref").text();
-            if(foodname){
+            if(foodname != null && foodname != ""){
 
                 $.ajax({
                     type: "get",

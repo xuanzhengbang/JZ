@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  *  订餐类型
@@ -56,7 +57,9 @@ public class DineTypeController extends BaseApiController {
     @RequestMapping(value = "/dineType/list", method = RequestMethod.GET)
     public Object list(){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
-        result.put("data", dineTypeService.list());
+        List<ZdDineType> dineTypes = dineTypeService.list();
+        result.put("data", dineTypes);
+        result.put("total", dineTypes.size());
         return result;
     }
 

@@ -59,7 +59,9 @@ public class SetmealController extends BaseApiController {
     public Object list(){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
 
-        result.put("data", setmealService.list());
+        List<ZdSetmeal> setmeals = setmealService.list();
+        result.put("data", setmeals);
+        result.put("total", setmeals.size());
 
         return result;
     }
@@ -72,12 +74,8 @@ public class SetmealController extends BaseApiController {
         if(user == null){
             model.setViewName("login");
         } else {
-            //PageHelper.startPage(pageNum, pageSize);
             List<ZdSetmeal> setmeals = setmealService.list();
-            //PageInfo<ZdSetmeal> info = new PageInfo<ZdSetmeal>(setmeals);
-
             model.addObject("setmeals",setmeals);
-            //model.addObject("total", info.getPages());
             model.addObject("total", 1);
             model.addObject("pageNum", pageNum);
             model.setViewName("setmeal");

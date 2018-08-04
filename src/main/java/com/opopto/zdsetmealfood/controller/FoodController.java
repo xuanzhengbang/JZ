@@ -70,7 +70,9 @@ public class FoodController extends BaseApiController {
         if(foodName == "*"){
             foodName = null;
         }
-        result.put("data", foodService.query(type,foodName));
+        List<ZdFood> foods = foodService.query(type, foodName);
+        result.put("data", foods);
+        result.put("total", foods.size());
         return result;
     }
 
@@ -103,6 +105,7 @@ public class FoodController extends BaseApiController {
         } else {
             List<ZdFood> foodList = foodService.query(type,null);
             result.put("data", foodList);
+            result.put("total", foodList.size());
             return result;
         }
     }
