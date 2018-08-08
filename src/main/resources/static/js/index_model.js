@@ -89,7 +89,7 @@ function storage(date,book,place,model_dineType,price,startTable){
         $("table#model_table").find("td").each(function () {
             foods.push($(this).text());
         });
-
+        console.log(foods);
        $.ajax({
             type: "post",
             url: "/setmeal/create",
