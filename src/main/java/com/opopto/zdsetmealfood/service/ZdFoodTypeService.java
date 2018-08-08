@@ -36,5 +36,11 @@ public class ZdFoodTypeService {
         return list;
     }
 
+    public void delete(Integer id){
+        ZdFoodType foodType = new ZdFoodType();
+        foodType.setId(id);
+        foodType.setDelFlag(1);
+        foodTypeMapper.updateByPrimaryKeySelective(foodType);
+    }
 
 }

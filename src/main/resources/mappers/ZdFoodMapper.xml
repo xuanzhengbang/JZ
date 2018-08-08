@@ -99,7 +99,7 @@
     select
     <include refid="Base_Column_List" />
     from zd_food
-    where `name` = #{name,jdbcType=VARCHAR}
+    where del_flag = 0 and `name` = #{name,jdbcType=VARCHAR}
   </select>
 
   <select id="query" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -109,6 +109,8 @@
     zd_food f,
     zd_food_type ft
     WHERE
+    f.del_flag =0
+    and
     f.type_code = ft.`code`
     <if test="type != null" >
       AND ft.`name` = #{type,jdbcType=VARCHAR}

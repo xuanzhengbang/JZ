@@ -104,7 +104,7 @@
           <th>类别</th>
           <th>创建时间</th>
           <th>备注</th>
-          <!--<th>操作</th>-->
+          <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -114,9 +114,9 @@
           <td th:text="${ item.typeName }"></td>
           <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td th:text="${ item.desc }"></td>
-          <!--<td>
-            <button type="button" class="btn btn-danger" th:id="${item.id}">删除</button>
-          </td>-->
+          <td>
+            <button type="button" class="btn btn-danger" th:id="${item.id}" onclick="del(this)">删除</button>
+          </td>
         </tr>
         </tbody>
       </table><br/>
@@ -203,6 +203,23 @@
                 location.reload();
             }
         });
+    }
+
+    function del(obj) {
+        if (confirm("确认要删除？")) {
+            var id = $(obj).attr("id");
+            $.ajax({
+                type : "post",
+                url : "/food/del.do",
+                data : "id=" + id,
+                dataType : 'html',
+                contentType : "application/x-www-form-urlencoded; charset=utf-8",
+                success : function(result) {
+                    //$(".table tr:eq(" + id + ")").remove();
+                    location.reload();
+                }
+            });
+        }
     }
 </script>
 </body>

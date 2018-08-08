@@ -40,6 +40,13 @@ public class FoodTypeController extends BaseApiController {
         return result;
     }
 
+    @RequestMapping(value = "/foodType/del.do", method = RequestMethod.POST)
+    public Object delete(@RequestParam(required = true) Integer id){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        foodTypeService.delete(id);
+        return result;
+    }
+
     @RequestMapping(value = "/foodType", method = RequestMethod.GET)
     public ModelAndView foodType(@RequestParam(defaultValue = "1")Integer pageNum,
                                  @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
