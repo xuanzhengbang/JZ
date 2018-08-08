@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.opopto.zdsetmealfood.entity.ZdFood;
-import com.opopto.zdsetmealfood.entity.ZdFoodType;
-import com.opopto.zdsetmealfood.entity.ZdSetmeal;
-import com.opopto.zdsetmealfood.entity.ZdSetmealItem;
+import com.opopto.zdsetmealfood.entity.*;
 import com.opopto.zdsetmealfood.helper.ServiceParamHelper;
 import com.opopto.zdsetmealfood.service.SetmealService;
 import lombok.extern.apachecommons.CommonsLog;
@@ -74,9 +71,17 @@ public class SetmealController extends BaseApiController {
         if(user == null){
             model.setViewName("login");
         } else {
+            PageHelper.startPage(pageNum, pageSize);
             List<ZdSetmeal> setmeals = setmealService.list();
-            model.addObject("setmeals",setmeals);
-            model.addObject("total", 1);
+            PageInfo<ZdSetmeal> info = new PageInfo<ZdSetmeal>(setmeals);
+            List<ZdSetmeal> setmealList = new ArrayList<>();
+            for(int i=0; i<setmeals.size();i++){
+                ZdSetmeal temp = setmeals.get(i);
+                temp.setItems(setmealService.listItemByCode(temp.getCode()));
+                setmealList.add(temp);
+            }
+            model.addObject("setmeals",setmealList);
+            model.addObject("total", info.getPages());
             model.addObject("pageNum", pageNum);
             model.setViewName("setmeal");
         }

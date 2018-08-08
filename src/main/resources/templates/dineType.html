@@ -104,7 +104,7 @@
           <th>名称</th>
           <th>创建时间</th>
           <th>备注</th>
-          <!--<th>操作</th>-->
+          <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -113,12 +113,18 @@
           <td th:text="${item.name}"></td>
           <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td th:text="${item.desc}">备注</td>
-          <!--<td>
-            <button type="button" class="btn btn-danger">删除</button>
-          </td>-->
+          <td>
+            <button type="button" class="btn btn-danger" >删除</button>
+          </td>
         </tr>
         </tbody>
       </table><br/>
+
+        <ul class="pagination">
+          <li><a th:href="${ pageNum-1<1 ? '/dineType?pageNum='+1 : '/dineType?pageNum='+ (pageNum-1) }">&laquo;</a></li>
+          <li th:each="i : ${ #numbers.sequence(1,total) }" th:class="${ i==pageNum ? 'active':'' }"><a th:href="${'/dineType?pageNum='+i}" th:text="${i}"></a></li>
+          <li><a th:href="${ pageNum+1 > total ? '/dineType?pageNum=' + total : '/dineType?pageNum=' + (pageNum+1) }">&raquo;</a></li>
+        </ul>
 
     </div>
   </div>

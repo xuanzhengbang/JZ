@@ -47,19 +47,15 @@ public class SetmealService {
                 .andDelFlagEqualTo(0);
         List<ZdSetmeal> setmealList = setmealMapper.selectByExample(example);
 
+        return setmealList;
+    }
 
-        List<ZdSetmeal> result = new ArrayList<>();
-
-        for(ZdSetmeal setmeal : setmealList){
-            ZdSetmealItemExample itemExample = new ZdSetmealItemExample();
-            itemExample.createCriteria()
-                    .andSetmealCodeEqualTo(setmeal.getCode())
-                    .andDelFlagEqualTo(0);
-            setmeal.setItems(setmealItemMapper.selectByExample(itemExample));
-            result.add(setmeal);
-        }
-
-        return result;
+    public List<ZdSetmealItem> listItemByCode(String code){
+        ZdSetmealItemExample itemExample = new ZdSetmealItemExample();
+        itemExample.createCriteria()
+                .andSetmealCodeEqualTo(code)
+                .andDelFlagEqualTo(0);
+        return setmealItemMapper.selectByExample(itemExample);
     }
 
 }

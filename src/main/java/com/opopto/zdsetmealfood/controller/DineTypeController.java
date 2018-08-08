@@ -1,7 +1,10 @@
 package com.opopto.zdsetmealfood.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.opopto.zdsetmealfood.entity.ZdDineType;
+import com.opopto.zdsetmealfood.entity.ZdFood;
 import com.opopto.zdsetmealfood.helper.EncryptHelper;
 import com.opopto.zdsetmealfood.helper.ServiceParamHelper;
 import com.opopto.zdsetmealfood.service.ZdDineTypeService;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,13 +46,19 @@ public class DineTypeController extends BaseApiController {
     }
 
     @RequestMapping(value = "/dineType", method = RequestMethod.GET)
-    public ModelAndView dineType(HttpServletRequest request){
+    public ModelAndView dineType(@RequestParam(defaultValue = "1")Integer pageNum,
+                                 @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         if(user == null){
             model.setViewName("login");
         } else {
-            model.addObject("dineTypes",dineTypeService.list());
+            PageHelper.startPage(pageNum, pageSize);
+            List<ZdDineType> dineTypeList = dineTypeService.list();
+            PageInfo<ZdDineType> info = new PageInfo<ZdDineType>(dineTypeList);
+            model.addObject("dineTypes", dineTypeList);
+            model.addObject("total", info.getPages());
+            model.addObject("pageNum", pageNum);
             model.setViewName("dineType");
         }
         return model;
