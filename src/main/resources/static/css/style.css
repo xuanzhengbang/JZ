@@ -454,7 +454,7 @@ p.quote:before {
 
 /*start: Login*/
 .form-signin-wrapper {
-	background: url(../img/bgfood.jpg) !important;
+	background: url(http://img.bus.leiven.com/bgfood.jpg) !important;
 	background-size: cover;
 }
 .form-signin {
@@ -1814,7 +1814,7 @@ ul li a:focus {
 }
 .navbar {
 	height: 114px;
-	background-image: url(../img/back.jpg);
+	background-image: url(http://img.bus.leiven.com/back.jpg);
 	background-size:100% 115px;
 	background-repeat:no-repeat;
 	color: #fff;
