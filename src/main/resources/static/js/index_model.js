@@ -98,12 +98,8 @@ function storage(date,book,place,model_dineType,price,startTable){
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
                 //
-                var startStr = "<!--startprint-->";
-                var endStr = "<!--endprint-->";
-                var printHtml = document.getElementById("myModal").innerHTML;
-                window.document.body.innerHTML = printHtml;
-                window.print();
-             },
+                printFood(date,book,place,model_dineType,num,price);
+            },
            error:function(result){
                $("#showError").empty();
                $("#showError").append("<span>数据保存不成功！</span>");
@@ -111,3 +107,44 @@ function storage(date,book,place,model_dineType,price,startTable){
            }
        });
 }
+//da打印页面设置
+function printFood(date,book,place,model_dineType,num,price) {
+    //清空当前元素所属的页面，再添加上相应的属性
+    //跳转页面进行打印，跳转只是增加页面内容
+    $("#printTable").append("<tr><td>军转大酒店菜单</td></tr>");
+    $("#printTable").append("<tr><td>时间："+date+"</td></tr>");
+    $("#printTable").append("<tr><td>餐型："+book+"</td></tr>");
+    $("#printTable").append("<tr><td>地点："+place+"</td></tr>");
+    $("#printTable").append("<tr><td>类别："+model_dineType+"</td></tr>");
+    $("#printTable").append("<tr><td>标准："+price+"元/桌</td></tr>");
+    $("#printTable").append("<tr><td>桌数："+num+"桌</td></tr>");
+    $("#printTable").append("<tr><td>----------------------------------------------------------</td></tr>");
+
+    var table = document.getElementById("printTable");
+    var bts = window.localStorage.getItem("bts");
+    if(bts != null&& bts !="null"){
+        var bts_array = bts.split(',');
+        if(bts_array!=null && bts_array.length>0){
+            for(var k in bts_array){
+                if(bts_array[k].length>0){
+                    var newRow = table.insertRow();
+                    var cell = newRow.insertCell(0);
+                    cell.innerHTML=bts_array[k];
+                }
+            }
+        }
+    }
+
+    CreateOneFormPage();
+    LODOP.PREVIEW();
+
+}
+function CreateOneFormPage(){
+    LODOP=getLodop();
+    LODOP.PRINT_INIT("军转大酒店菜单");
+ 
+    LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
+    LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
+    LODOP.SET_PRINT_STYLEA(2,"Bold",1);
+    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
+};
