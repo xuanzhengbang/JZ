@@ -162,7 +162,7 @@
             <label id="modal_price" class="modal_label" for="name">标准：1200 元/桌</label>  <label id="modal_num" class="modal_label_right" for="name">桌数： 10 桌</label> <br/>
           </div>
         </div><br/>
-        <table id="model_table" class="table table-bordered table-hover" style="width: 86%;">
+        <table id="model_table" class="table table-bordered table-hover" style="width: 86%; margin-left: 5%">
           <tbody>
           </tbody>
         </table>
@@ -193,11 +193,11 @@
         //加载模态框数据
         var code = $(obj).attr("id");
         $.get("/setmeal/getByCode?code="+code, function(result){
-            $('#modal_time').html("时间： " + result.data.bookDate);
-            $('#modal_place').html("地点： " + result.data.place);
-            $('#modal_dineType').html("类别： " + result.data.dineType);
-            $('#modal_price').html( "标准： "+result.data.price +" 元/桌");
-            $('#modal_num').html("桌数： " + result.data.num + " 桌");
+            $('#modal_time').html("时间： <u>&nbsp;" + result.data.bookDate+"&nbsp;&nbsp;</u>");
+            $('#modal_place').html("地点： <u>&nbsp;" + result.data.place + "&nbsp;&nbsp;</u>");
+            $('#modal_dineType').html("类别： <u>&nbsp;" + result.data.dineType + "&nbsp;&nbsp;</u>" );
+            $('#modal_price').html( "标准： <u>&nbsp;"+result.data.price +"&nbsp;&nbsp;</u> 元/桌");
+            $('#modal_num').html("桌数： <u>&nbsp;" + result.data.num + "&nbsp;&nbsp;</u> 桌");
 
             $("#model_table").html("");
             for (var i in result.data.items){
