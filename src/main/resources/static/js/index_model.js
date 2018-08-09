@@ -13,7 +13,17 @@ function getInfo() {
     $.get("/place/list", function(result){
         $("#model_place").empty();
         for (var i in result.data){
-            $("#model_place").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+            if(result.data[i].items.length>0){
+                var htm = "<optgroup label=" + result.data[i].name + ">";
+                for(var k in result.data[i].items){
+                    htm += "<option value='" + result.data[i].items[k].name + "' >"+ result.data[i].items[k].name +"</option>";
+                }
+                htm += "</optgroup>";
+                $("#model_place").append(htm);
+            } else {
+                $("#model_place").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+            }
+
         }
     });
 
