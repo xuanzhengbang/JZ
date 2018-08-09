@@ -23,7 +23,15 @@ public class ZdDineTypeService {
         return dineTypeMapper.listAll();
     }
 
+    public void delete(Integer id){
+        ZdDineType dineType = new ZdDineType();
+        dineType.setId(id);
+        dineType.setDelFlag(1);
+        dineTypeMapper.updateByPrimaryKeySelective(dineType);
+    }
+
     public ZdDineType create(ZdDineType dineType){
+        dineType.setDelFlag(0);
         dineTypeMapper.insertSelective(dineType);
         log.info("insert record to zd_dine_type by " + dineType);
         return dineType;

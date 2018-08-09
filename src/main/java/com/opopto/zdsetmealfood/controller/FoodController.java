@@ -132,4 +132,11 @@ public class FoodController extends BaseApiController {
         return model;
     }
 
+    @RequestMapping(value = "/food/del.do", method = RequestMethod.POST)
+    public Object delete(@RequestParam(required = true) Integer id){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        foodService.delete(id);
+        return result;
+    }
+
 }

@@ -73,4 +73,11 @@ public class DineTypeController extends BaseApiController {
         return result;
     }
 
+    @RequestMapping(value = "/dineType/del.do", method = RequestMethod.POST)
+    public Object delete(@RequestParam(required = true) Integer id){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        dineTypeService.delete(id);
+        return result;
+    }
+
 }

@@ -114,7 +114,7 @@
           <td th:text="${#dates.format(item.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td th:text="${item.desc}">备注</td>
           <td>
-            <button type="button" class="btn btn-danger">删除</button>
+            <button type="button" th:id="${item.id}" class="btn btn-danger" onclick="del(this)">删除</button>
           </td>
         </tr>
         </tbody>
@@ -173,7 +173,7 @@
 </div>
 <script>
 
-    $('#myModal').on('shown.bs.modal', function () {
+/*    $('#myModal').on('shown.bs.modal', function () {
         var $this = $(this);
         var dialog = $this.find('.modal-dialog');
 
@@ -183,7 +183,7 @@
         dialog.css({
             marginTop: top
         })
-    });
+    });*/
 
     function add() {
         //获取模态框数据
@@ -199,6 +199,23 @@
                 location.reload();
             }
         });
+    }
+    
+    function del(obj) {
+        if (confirm("确认要删除？")) {
+            var id = $(obj).attr("id");
+            $.ajax({
+                type : "post",
+                url : "/foodType/del.do",
+                data : "id=" + id,
+                dataType : 'html',
+                contentType : "application/x-www-form-urlencoded; charset=utf-8",
+                success : function(result) {
+                    //$(".table tr:eq(" + id + ")").remove();
+                    location.reload();
+                }
+            });
+        }
     }
 
 </script>

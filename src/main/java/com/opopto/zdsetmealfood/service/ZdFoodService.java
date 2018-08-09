@@ -42,4 +42,11 @@ public class ZdFoodService {
         return foodMapper.listAndTypeName();
     }
 
+    public void delete(Integer id){
+        ZdFood food = new ZdFood();
+        food.setId(id);
+        food.setDelFlag(1);
+        foodMapper.updateByPrimaryKeySelective(food);
+    }
+
 }
