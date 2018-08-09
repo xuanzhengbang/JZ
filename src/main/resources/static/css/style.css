@@ -5988,3 +5988,12 @@ ul.normal-list li {
 th, td {
 	text-align: center;
 }
+
+.modal_label{
+	font-size: 17px;
+	margin-left: 32px;
+}
+.modal_label_right{
+	font-size: 17px;
+	margin-left: 60px;
+}

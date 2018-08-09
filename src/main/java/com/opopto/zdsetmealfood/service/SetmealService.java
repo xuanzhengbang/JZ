@@ -58,4 +58,10 @@ public class SetmealService {
         return setmealItemMapper.selectByExample(itemExample);
     }
 
+    public ZdSetmeal getByCode(String code){
+        ZdSetmeal setmeal = setmealMapper.selectByCode(code);
+        setmeal.setItems(listItemByCode(code));
+        return setmeal;
+    }
+
 }

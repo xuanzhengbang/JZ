@@ -125,7 +125,7 @@
           <td th:text="${ item.price }"></td>
           <td th:text="${ item.num }"></td>
           <td>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">更多</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" th:id="${item.code}" onclick="loadInfo(this)">更多</button>
           </td>
         </tr>
         </tbody>
@@ -151,20 +151,28 @@
           &times;
         </button>
         <h4 class="modal-title" id="myModalLabel">
-          添加菜品
+          套餐信息
         </h4>
       </div>
       <div class="modal-body">
-        <input type="text" class="form-control" id="new_food_name" placeholder="请输入名称" /><br/>
-        <select class="form-control" id="new_food_type" placeholder="菜品分类">
-        </select><br/>
-        <input type="text" class="form-control" id="new_food_desc" placeholder="备注信息" /><br/>
+        <div class="form-inline">
+          <div class="form-group">
+            <label id="modal_time" class="modal_label" for="name">时间： 2018-08-04 晚餐</label> <br/>
+            <label id="modal_place" class="modal_label" for="name">地点： 二楼包厢</label>  <label id="modal_dineType" class="modal_label_right" for="name">类别： 包厢</label> <br/>
+            <label id="modal_price" class="modal_label" for="name">标准：1200 元/桌</label>  <label id="modal_num" class="modal_label_right" for="name">桌数： 10 桌</label> <br/>
+          </div>
+        </div><br/>
+        <table id="model_table" class="table table-bordered table-hover" style="width: 86%;">
+          <tbody>
+          </tbody>
+        </table>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
         </button>
-        <button type="button" class="btn btn-primary" onclick="add()">
-          提  交
+        <button type="button" class="btn btn-primary">
+          打  印
         </button>
       </div>
     </div><!-- /.modal-content -->
@@ -184,20 +192,20 @@
   技术支持：雷文科技
 </div>
 <script>
-    function add() {
-        //获取模态框数据
-        var name = $('#new_food_name').val();
-        var typeCode = $('#new_food_type').val();
-        var desc = $('#new_food_desc').val();
+    function loadInfo(obj) {
+        //加载模态框数据
+        var code = $(obj).attr("id");
+        $.get("/setmeal/getByCode?code="+code, function(result){
+            $('#modal_time').html("时间： " + result.data.bookDate);
+            $('#modal_place').html("地点： " + result.data.place);
+            $('#modal_dineType').html("类别： " + result.data.dineType);
+            $('#modal_price').html( "标准： "+result.data.price +" 元/桌");
+            $('#modal_num').html("桌数： " + result.data.num + " 桌");
 
-        $.ajax({
-            type: "post",
-            url: "/food/create",
-            data: "name=" + name + "&typeCode=" + typeCode + "&desc=" + desc,
-            dataType: 'html',
-            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            success: function (result) {
-                location.reload();
+            $("#model_table").html("");
+            for (var i in result.data.items){
+                var tmp =  "<tr><td>"+result.data.items[i].foodName+"</td></tr>";
+                $(tmp).appendTo($('#model_table'));
             }
         });
     }

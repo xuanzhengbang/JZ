@@ -98,6 +98,12 @@
     from zd_setmeal
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from zd_setmeal
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from zd_setmeal
     where id = #{id,jdbcType=INTEGER}

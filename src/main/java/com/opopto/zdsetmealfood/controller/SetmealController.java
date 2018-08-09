@@ -89,4 +89,11 @@ public class SetmealController extends BaseApiController {
         return model;
     }
 
+    @RequestMapping(value = "/setmeal/getByCode", method = RequestMethod.GET)
+    public Object getByCode(String code){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        result.put("data", setmealService.getByCode(code));
+        return result;
+    }
+
 }

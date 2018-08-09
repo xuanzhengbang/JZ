@@ -27,4 +27,7 @@ public interface ZdSetmealMapper {
     int updateByPrimaryKeySelective(ZdSetmeal record);
 
     int updateByPrimaryKey(ZdSetmeal record);
+
+
+    ZdSetmeal selectByCode(@Param("code") String code);
 }
