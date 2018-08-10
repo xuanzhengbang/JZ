@@ -22,13 +22,21 @@ caption{
 #contents{
 	color: white;
 	padding: 3% 8% 4% 8%;
-	margin: 8% 0 0 10%;
+	margin: 13% 0 0 10%;
 	width: 80%;
 	height: auto;
 	font-size: 16px;
 	background: rgba(0, 0, 0, 0.3);
 }
 /*正邦修改前端*/
+.scroll{
+	background: rgba(0, 0, 0, 0)!important;
+	overflow: hidden!important;
+	outline: none!important;
+}
+.nav-list{
+	background: rgba(0, 0, 0, 0.125)!important;
+}
 .nav-header{
 	color: white;
 	font-size:20px;
@@ -2002,6 +2010,8 @@ ul li a:focus {
 }
 /*-----Left menu-------*/
 #left-menu {
+	background-color: rgba(0,0,0,0);
+
 }
 #left-menu .left-bg {
 	background: url('../img/left-bg.png');
@@ -2645,7 +2655,7 @@ ul li a:focus {
 	display: inline-block;
 }
 #content {
-	margin-top: 100px;
+	margin-top: 10%;
 	padding: 0px;
 	padding-bottom: 10px;
 	padding-left: 230px;
