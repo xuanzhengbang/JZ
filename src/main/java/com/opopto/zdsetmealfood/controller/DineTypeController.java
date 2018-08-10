@@ -47,7 +47,7 @@ public class DineTypeController extends BaseApiController {
 
     @RequestMapping(value = "/dineType", method = RequestMethod.GET)
     public ModelAndView dineType(@RequestParam(defaultValue = "1")Integer pageNum,
-                                 @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
+                                 @RequestParam(defaultValue = "8")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         if(user == null){

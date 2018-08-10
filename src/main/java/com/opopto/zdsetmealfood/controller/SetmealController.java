@@ -64,7 +64,7 @@ public class SetmealController extends BaseApiController {
     }
 
     @RequestMapping(value = "/setmeal", method = RequestMethod.GET)
-    public ModelAndView setmeal(@RequestParam(defaultValue = "1")Integer pageNum, @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
+    public ModelAndView setmeal(@RequestParam(defaultValue = "1")Integer pageNum, @RequestParam(defaultValue = "8")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
 

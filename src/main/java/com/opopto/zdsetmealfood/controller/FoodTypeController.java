@@ -49,7 +49,7 @@ public class FoodTypeController extends BaseApiController {
 
     @RequestMapping(value = "/foodType", method = RequestMethod.GET)
     public ModelAndView foodType(@RequestParam(defaultValue = "1")Integer pageNum,
-                                 @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
+                                 @RequestParam(defaultValue = "8")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
         if(user == null){

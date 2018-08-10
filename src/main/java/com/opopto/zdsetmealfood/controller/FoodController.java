@@ -112,7 +112,7 @@ public class FoodController extends BaseApiController {
 
     @RequestMapping(value = "/food", method = RequestMethod.GET)
     public ModelAndView food(@RequestParam(defaultValue = "1")Integer pageNum,
-                             @RequestParam(defaultValue = "5")Integer pageSize, HttpServletRequest request){
+                             @RequestParam(defaultValue = "8")Integer pageSize, HttpServletRequest request){
         Object user = request.getSession().getAttribute("userLogin");
         ModelAndView model = new ModelAndView();
 
