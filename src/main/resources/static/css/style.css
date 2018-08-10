@@ -5,11 +5,30 @@ body {
 	background-color: #f0f3f4;
 	line-height: 1.42857143 !important;
 	color: #58666e !important;
+	background: url(../img/bgfood.jpg);
 }
 ul,li {
 	padding: 0;
 	margin: 0;
 }
+/*正邦修改前端*/
+.navbar-default{
+	border-color: #e7e7e7 !important;
+}
+.sub-left-menu{
+    background: rgba(0, 0, 0, 0.125);
+	overflow: hidden;
+	outline: none;"
+	tabindex="5000"
+}
+.box-v1{
+	background: rgba(0,0,0,0.2) !important;
+}
+.panel{
+	background: rgba(0,0,0,0.0) !important;
+}
+
+/**/
 /*删除del的显示*/
 
 .buttonDel{
@@ -454,7 +473,7 @@ p.quote:before {
 
 /*start: Login*/
 .form-signin-wrapper {
-	background: url(http://img.bus.leiven.com/bgfood.jpg) !important;
+	background: url(../img/backLogo.jpg) !important;
 	background-size: cover;
 }
 .form-signin {
@@ -761,8 +780,8 @@ p.quote:before {
 }
 .panel-heading, .fc-head {
 	padding: 0px;
-	background: #F9F9F9;
-	padding: 5px;
+	background: rgba(0,0,0,0.2);
+	/*padding: 5px;padding: 5px;*/
 	padding-left: 20px;
 	border-bottom: 1px solid #ddd;
 }
@@ -1065,6 +1084,7 @@ ul li a:focus {
 }
 .padding-0 {
 	padding: 0px;
+	background: rgba(0,0,0,0) !important;
 }
 .fc {
 	color: #444;
@@ -1958,10 +1978,11 @@ ul li a:focus {
 	position: relative;
 	margin-left: -2px;
 }
+
 #left-menu .sub-left-menu {
 	background-color: #fff;
 	left: 0;
-	padding-top: 50px;
+	padding-top: 150px;
 	z-index: 222;
 	width: 230px;
 	height: 100%;

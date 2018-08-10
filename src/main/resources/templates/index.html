@@ -23,9 +23,9 @@
 
 <body id="mimin" class="dashboard">
 <!-- start: Header -->
-<nav class="navbar navbar-default header navbar-fixed-top">
+<nav class="navbar navbar-default header navbar-fixed-top" style="height:110px;background: rgba(0,0,0,0);background-size:100%">
   <div class="col-md-12 nav-wrapper">
-    <div class="navbar-header" style="width:100%;margin-top: 36px;margin-left: -20px; ">
+    <div class="navbar-header" style="width:100%;margin-top: 36px;margin-left: -20px; background: rgba(0,0,0,0);">
 
       <ul class="nav navbar-nav navbar-right user-nav">
         <li class="user-name"><span>管理员</span></li>
@@ -44,10 +44,10 @@
 <div class="container-fluid mimin-wrapper">
   <!-- start:Left Menu -->
   <div id="left-menu">
-    <div class="sub-left-menu scroll">
+    <div class="sub-left-menu scroll" style="background: rgba(0, 0, 0, 0.125); overflow: hidden; outline: none;" tabindex="5000">
       <ul class="nav nav-list">
         <li>
-          <div class="left-bg"></div>
+
         </li>
         <li class="active ripple">
           <a href="javascript:void(0);" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
@@ -96,15 +96,15 @@
 
   <!-- start: content -->
   <div id="content">
-    <div class="panel" style="background-color: #55b4ff;">
-      <div class="panel-body" style="padding: 0px">
-        <div class="col-md-6 col-sm-12" style="padding-top: 18px;">
-          <h3 class="animated fadeInLeft">&nbsp;&nbsp;</h3>
-          <p class="animated fadeInDown"><span class="fa  fa-map-marker"></span>&nbsp;&nbsp;</p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12" style="padding:20px;">
+    <!--<div class="panel" style="background-color: #55b4ff;">-->
+      <!--<div class="panel-body" style="padding: 0px">-->
+        <!--<div class="col-md-6 col-sm-12" style="padding-top: 18px;">-->
+          <!--<h3 class="animated fadeInLeft">&nbsp;&nbsp;</h3>-->
+          <!--<p class="animated fadeInDown"><span class="fa  fa-map-marker"></span>&nbsp;&nbsp;</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <div class="col-md-12" style="padding:60px;background-color: rgba(0,0,0,0.2)">
       <div class="col-md-12 padding-0">
         <div class="col-md-8 padding-0">
           <div class="col-md-12 padding-0">
@@ -130,7 +130,7 @@
                 <!--菜品显示区域-->
                 <div class="panel-body text-center">
 
-                  <form id="formid" class="formid" name="myform" method='post' onsubmit="">
+                  <form id="formid" class="formid" name="myform" method='post' onsubmit="" style="background: rgba(0,0,0,0);">
                     <div id="bts">
                       <span th:each="item : ${foods}">
                         <button type="button" class="button button4" th:value="${item.name}" th:text="${item.name}"></button>
