@@ -13,6 +13,21 @@ ul,li {
 	margin: 0;
 
 }
+caption{
+	font-size: x-large;
+	text-align: center;
+	margin-bottom: 1%;
+	color: aliceblue;
+}
+#contents{
+	color: white;
+	padding: 3% 8% 4% 8%;
+	margin: 8% 0 0 10%;
+	width: 80%;
+	height: auto;
+	font-size: 16px;
+	background: rgba(0, 0, 0, 0.3);
+}
 /*正邦修改前端*/
 .nav-header{
 	color: white;
@@ -2062,7 +2077,7 @@ ul li a:focus {
 	color: #918C8C;
 }
 #left-menu .sub-left-menu .tree {
-	
+
 	padding: 0px;
 	margin: 0px;
 	border-top: 1px solid #ddd;

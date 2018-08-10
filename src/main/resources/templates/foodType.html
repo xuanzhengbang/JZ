@@ -23,13 +23,13 @@
 
 <body id="mimin" class="dashboard">
 <!-- start: Header -->
-<nav class="navbar navbar-default header navbar-fixed-top">
+<nav class="navbar-default header navbar-fixed-top" style="height:110px;background: rgba(0,0,0,0);background-size:100%">
   <div class="col-md-12 nav-wrapper">
-    <div class="navbar-header" style="width:100%;margin-top: 36px;margin-left: -20px">
+    <div class="navbar-header" style="width:100%;margin-top: 36px;margin-left: -20px; background: rgba(0,0,0,0);">
 
       <ul class="nav navbar-nav navbar-right user-nav">
-        <li class="user-name"><span>管理员</span></li>
-        <li class="dropdown avatar-dropdown"> <img src="/img/head.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+        <li class="user-name"><span style="color: white;">管理员</span></li>
+        <li class="dropdown avatar-dropdown"> <img src="/img/avatar.jpg;" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <ul class="dropdown-menu user-dropdown">
             <li>
               <a href="/user/logout.do"><span class="fa fa-power-off"></span> 退出登录</a>
@@ -40,17 +40,18 @@
     </div>
   </div>
 </nav>
+
 <!-- end: Header -->
 <div class="container-fluid mimin-wrapper">
   <!-- start:Left Menu -->
   <div id="left-menu">
-    <div class="sub-left-menu scroll">
+    <div class="sub-left-menu scroll" style="background: rgba(0, 0, 0, 0.125); overflow: hidden; outline: none;" tabindex="5000">
       <ul class="nav nav-list">
         <li>
-          <div class="left-bg"></div>
+
         </li>
-        <li class="ripple">
-          <a href="/" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        <li class="active ripple">
+          <a href="javascript:void(0);" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
 
           <ul class="nav nav-list tree">
             <li class="nextli">
@@ -60,33 +61,34 @@
               <a href="/food/query?type=汤菜">汤菜</a>
             </li>
             <li class="nextli">
-              <a href="/food/query?type=素菜">素菜</a>
+              <a href="/food/query?type=海鲜">海鲜</a>
             </li>
             <li class="nextli">
-              <a href="/food/query?type=河鲜">河鲜</a>
+              <a href="/food/query?type=海鲜">河鲜</a>
             </li>
             <li class="nextli">
-              <a href="/food/query?type=荤菜">荤菜</a>
+              <a href="/food/query?type=海鲜">荤菜</a>
             </li>
             <li class="nextli">
-              <a href="/food/query?type=烧菜">烧菜</a>
+              <a href="/food/query?type=海鲜">烧菜</a>
             </li>
           </ul>
         </li>
 
 
-        <li class="ripple">
+        <li class=" ripple">
           <a href="/dineType" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span>订餐类别<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
-        <li class="active ripple">
-          <a href="/foodType" class="sub-tree-toggle nav-header"> <span class="fa-home fa"></span>菜品类型<span class="fa-angle-right fa right-arrow text-right"></span> </a>
-        </li>
         <li class="ripple">
+          <a href="/foodType"  class="sub-tree-toggle nav-header"> <span class="fa-home fa"></span>菜品类型<span class="fa-angle-right fa right-arrow text-right"></span> </a>
+        </li>
+        <li class=" ripple">
           <a href="/food" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span> 菜品添加<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
         <li class=" ripple">
           <a href="/setmeal" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
+
 
       </ul>
     </div>
@@ -103,9 +105,9 @@
         </div>
       </div>
     </div>-->
-    <div id="contents" style="background: white; padding: 3% 8% 4% 8%; margin: 8% 0 0 10%; width: 80%; height: auto;font-size: 16px">
+    <div id="contents" >
       <table class="table" >
-        <caption style="font-size: x-large; text-align: center; margin-bottom: 1%;">菜品类型列表</caption>
+        <caption >菜品类型列表</caption>
         <thead>
         <tr>
           <th>编号</th>
