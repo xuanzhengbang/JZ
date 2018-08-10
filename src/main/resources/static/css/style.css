@@ -2,6 +2,7 @@
 body {
 	font-family: "Microsoft Yahei";
 	font-size: 13px;
+	color: white;
 	background-color: #f0f3f4;
 	line-height: 1.42857143 !important;
 	color: #58666e !important;
@@ -10,8 +11,26 @@ body {
 ul,li {
 	padding: 0;
 	margin: 0;
+
 }
 /*正邦修改前端*/
+.nav-header{
+	color: white;
+	font-size:20px;
+}
+
+.text-left{
+	color: #FAFAFA;
+}
+#bts{
+	color: #FAFAFA;
+}
+
+
+.nextli a{
+	color: white;
+	font-size:20px;
+}
 .navbar-default{
 	border-color: #e7e7e7 !important;
 }
@@ -25,7 +44,7 @@ ul,li {
 	background: rgba(0,0,0,0.2) !important;
 }
 .panel{
-	background: rgba(0,0,0,0.0) !important;
+	background: rgba(0,0,0,0.2) !important;
 }
 
 /**/
@@ -48,8 +67,8 @@ ul,li {
 	cursor: pointer;
 }
 .button4 {
-	background-color: white;
-	color: black;
+	background-color: rgba(0,0,0,0.3);
+	color: #FAFAFA;
 	border: 2px solid #55b4ff;
 }
 .busubmit{
@@ -1995,7 +2014,7 @@ ul li a:focus {
 	box-shadow: 0 2px 5px 0 rgba(239, 235, 235, 0.16), 0 2px 10px 0 rgba(72, 70, 70, 0.12);
 }
 #left-menu .sub-left-menu a {
-	color: #0c0c0c;
+	color: #FAFAFA;
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 42px;
@@ -2024,7 +2043,7 @@ ul li a:focus {
 #left-menu .sub-left-menu .active {
 	border-left: 8px solid #55b4ff;
 	width: 100%;
-	background-color:#55b4ff!important;
+	background: rgba(0, 0, 0, 0.125)!important;
 	/*/background-color:#2196F3;*/
 }
 
@@ -2043,7 +2062,7 @@ ul li a:focus {
 	color: #918C8C;
 }
 #left-menu .sub-left-menu .tree {
-	background-color: #F6F8F8;
+	
 	padding: 0px;
 	margin: 0px;
 	border-top: 1px solid #ddd;
@@ -2619,11 +2638,11 @@ ul li a:focus {
 	color: #333;
 }
 .input-group-addon, .user-photo, .btn, .cover-v1, .nav-tabs.nav-tabs-v2, .tabs-area, .mail-wrapper, .mail-reply, .panel, .thumbnail, .navbar {
-	-webkit-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+	/*-webkit-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);*/
 	-moz-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
 	-ms-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
 	-o-box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
-	box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+	/*box-shadow: 0 1px 0px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);*/
 }
 /*start: box v-1*/
 .box-v1 {

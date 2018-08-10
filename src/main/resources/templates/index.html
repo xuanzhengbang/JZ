@@ -23,13 +23,14 @@
 
 <body id="mimin" class="dashboard">
 <!-- start: Header -->
-<nav class="navbar navbar-default header navbar-fixed-top" style="height:110px;background: rgba(0,0,0,0);background-size:100%">
+<!--<nav class="navbar navbar-default header navbar-fixed-top" style="height:110px;background: rgba(0,0,0,0);background-size:100%">-->
+<nav class="navbar-default header navbar-fixed-top" style="height:110px;background: rgba(0,0,0,0);background-size:100%">
   <div class="col-md-12 nav-wrapper">
     <div class="navbar-header" style="width:100%;margin-top: 36px;margin-left: -20px; background: rgba(0,0,0,0);">
 
       <ul class="nav navbar-nav navbar-right user-nav">
-        <li class="user-name"><span>管理员</span></li>
-        <li class="dropdown avatar-dropdown"> <img src="/img/head.png" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" />
+        <li class="user-name"><span style="color: white;">管理员</span></li>
+        <li class="dropdown avatar-dropdown"> <img src="/img/avatar.jpg;" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <ul class="dropdown-menu user-dropdown">
             <li>
               <a href="/user/logout.do"><span class="fa fa-power-off"></span> 退出登录</a>
@@ -39,6 +40,8 @@
       </ul>
     </div>
   </div>
+</nav>
+
 </nav>
 <!-- end: Header -->
 <div class="container-fluid mimin-wrapper">
@@ -104,7 +107,7 @@
         <!--</div>-->
       <!--</div>-->
     <!--</div>-->
-    <div class="col-md-12" style="padding:60px;background-color: rgba(0,0,0,0.2)">
+    <div class="col-md-12" style="padding:60px;background-color: rgba(0,0,0,0)">
       <div class="col-md-12 padding-0">
         <div class="col-md-8 padding-0">
           <div class="col-md-12 padding-0">
@@ -117,9 +120,9 @@
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="width: 40%;">
                     <h4 class="" ><input class="form-control "id="input_search" placeholder="输入查询菜品 " style="position: absolute;margin: -8px;">
-                      <button type="button"  id="inputButton" style="float: right; position: relative; margin: -2px 40px 0px 0px;border-radius: 6px;border:1px #55b4ff solid;background: #55b4ff;">查询</button>
+                      <button type="button"  id="inputButton" style="float: right; position: relative; margin: -2px 40px 0px 0px;border-radius: 6px;border:1px #55b4ff solid;background: #FAFAFA;color: black;">查询</button>
                       <!--一个是提交一个是重置-->
-                      <button type="button"  id="resertButton" style="float: right; position: relative; margin: -2px -104px 0px 0px;border-radius: 6px;border:1px #55b4ff solid;background: #55b4ff;">重置</button>
+                      <button type="button"  id="resertButton" style="float: right; position: relative; margin: -2px -104px 0px 0px;border-radius: 6px;border:1px #55b4ff solid;background: #FAFAFA;color: black;">重置</button>
                       </input>
                     </h4>
                   </div>
