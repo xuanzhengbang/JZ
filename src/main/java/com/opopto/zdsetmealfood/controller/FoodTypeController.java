@@ -40,6 +40,7 @@ public class FoodTypeController extends BaseApiController {
         return result;
     }
 
+
     @RequestMapping(value = "/foodType/del.do", method = RequestMethod.POST)
     public Object delete(@RequestParam(required = true) Integer id){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
