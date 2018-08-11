@@ -44,13 +44,6 @@ function getInfo() {
     }
     
 }
-// function printOrder() {
-//     var startStr = "<!--startprint-->";
-//     var endStr = "<!--endprint-->";
-//     var printHtml = document.getElementById("myModal").innerHTML;
-//     window.document.body.innerHTML = printHtml;
-//     window.print();
-// }
 
 //提交菜单
 // :visible 选择器表示获取可见的元素

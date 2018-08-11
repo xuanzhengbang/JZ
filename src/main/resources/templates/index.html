@@ -51,32 +51,12 @@
         <li>
 
         </li>
-        <li class="active ripple">
-          <a href="/food/query?type=位上" class="tree-toggle nav-header"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-
+        <li class="active ripple" >
+          <a href="javascript:void(0);" class="tree-toggle nav-header" id="ripper_active"><span class="fa-home fa"></span> 菜品 <span class="fa-angle-right fa right-arrow text-right"></span> </a>
           <ul class="nav nav-list tree">
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >位上</a>
-            </li>
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >汤菜</a>
-            </li>
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >素菜</a>
-            </li>
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >河鲜</a>
-            </li>
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >荤菜</a>
-            </li>
-            <li class="nextli">
-              <a href="javascript:void(0);" id="nexthref" >烧菜</a>
-            </li>
+
           </ul>
         </li>
-
-
         <li class=" ripple">
           <a href="/dineType" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span>订餐类别<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
@@ -89,8 +69,6 @@
         <li class=" ripple">
           <a href="/setmeal" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
-
-
       </ul>
     </div>
   </div>
@@ -260,90 +238,6 @@
 <script src="/js/LodopFuncs.js"></script>
 
 <script>
-    // 添加菜品的新方法
-    $(document).ready(function(){
-        //ajax 需要添加新的方法
-        function caipin(){
-            $(".button4").on("click",function() {
-                var index = $(this).index();
-                if($(this).is(".button6")) {
-                    $(this).removeClass("button6");
-                } else {
-                    $(this).addClass("button6");
-                }
-            });
-        }
-        //获取模态框数据
-        $(".tree a").on("click",function () {
-            var name = $(this).text();
-            // alert(name);
-            var flag = false;
-            $.ajax({
-                type: "get",
-                url: "/food/list?type="+name,
-                dataType: 'html',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                success: function (result) {
-                    console.log("1"+result);
-                    $("#bts").empty();
-                    result=JSON.parse(result);
-                    // alert(result.data[0].name);
-                    for (var i in result.data){
-                        $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
-                    }
-                    caipin();
-                }
-            });
-        });
-
-        //搜索查询的餐品
-        $("#inputButton").on("click",function(){
-            //    获取输入框中的菜品名称
-            var foodname= $("#input_search").val();
-            var foodtype=$(".nextlili").find("#nexthref").text();
-            if(foodname != null && foodname != "" &&foodtype!=""){
-                $.ajax({
-                    type: "get",
-                    url:  "/food/query.json?type="+foodtype+"&foodName="+foodname,
-                    dataType: 'html',
-                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                    success: function (result) {
-                        //清空原本的菜品信息
-                        $("#bts").empty();
-                        result=JSON.parse(result);
-                        for (var i in result.data){
-                            $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
-                        }
-                        caipin();
-                    }
-                });
-            }
-        });
-
-        //重置按钮的设置
-        $("#resertButton").on("click",function () {
-            var name=$(".nextlili").find("#nexthref").text();
-            // alert(name);
-            var flag = false;
-            $.ajax({
-                type: "get",
-                url: "/food/list?type="+name,
-                dataType: 'text',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                success: function (result) {
-                    $("#bts").empty();
-                    result=JSON.parse(result);
-                    // alert(result.data[0].name);
-                    for (var i in result.data){
-
-                        $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
-                    }
-                    caipin();
-                }
-            });
-        });
-    });
-
 
 </script>
 

@@ -9,6 +9,86 @@
         }
     }
 
+    /////////////////
+    //ajax 需要添加新的方法
+    function caipin(){
+        $(".button4").on("click",function() {
+            var index = $(this).index();
+            if($(this).is(".button6")) {
+                $(this).removeClass("button6");
+            } else {
+                $(this).addClass("button6");
+            }
+        });
+    }
+    //获取模态框数据
+    $(document).on("click",".nextli a",function () {
+        var name = $(this).text();
+        // alert(name);
+        $.ajax({
+            type: "get",
+            url: "/food/list?type="+name,
+            dataType: 'html',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (result) {
+                $("#bts").empty();
+                result=JSON.parse(result);
+                // alert(result.data[0].name);
+                for (var i in result.data){
+                    $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
+                }
+                caipin();
+            }
+        });
+    });
+
+    //搜索查询的餐品
+    $("#inputButton").on("click",function(){
+        //    获取输入框中的菜品名称
+        var foodname= $("#input_search").val();
+        var foodtype=$(".nextlili").find("#nexthref").text();
+        if(foodname != null && foodname != "" &&foodtype!=""){
+            $.ajax({
+                type: "get",
+                url:  "/food/query.json?type="+foodtype+"&foodName="+foodname,
+                dataType: 'html',
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (result) {
+                    //清空原本的菜品信息
+                    $("#bts").empty();
+                    result=JSON.parse(result);
+                    for (var i in result.data){
+                        $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
+                    }
+                    caipin();
+                }
+            });
+        }
+    });
+    //重置按钮的设置
+    $("#resertButton").on("click",function () {
+        var name=$(".nextlili").find("#nexthref").text();
+        // alert(name);
+        var flag = false;
+        $.ajax({
+            type: "get",
+            url: "/food/list?type="+name,
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (result) {
+                $("#bts").empty();
+                result=JSON.parse(result);
+                // alert(result.data[0].name);
+                for (var i in result.data){
+
+                    $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
+                }
+                caipin();
+            }
+        });
+    });
+    //////////////////
+
     $.fn.ripple = function() {
         $(this).click(function(e) {
             var rippler = $(this),
@@ -33,12 +113,31 @@
         });
     };
 
+
+    //菜品自动添加的js
+    $("#ripper_active").on("click",function() {
+        $(".tree").empty();
+        $.ajax({
+            type :"GET",
+            url : "/foodType/list",
+            dataType: 'text',
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success : function (result) {
+                result=JSON.parse(result);
+                for (var i in result.data){
+                    $(".tree").append(" <li class='nextli'>" +
+                        " <a href='javascript:void(0);'id='nexthref' >"+result.data[i].name+"</a>" +
+                        " </li>")
+                }
+            }
+        });
+    });
     /*sadasda*/
-    $(".ripple").click(function() {
+    $(".ripple").on("click",function() {
         var index = $(this).index();
         $(this).addClass("active").siblings().removeClass("active");
     });
-    $(".nextli").click(function() {
+    $(document).on("click",".nextli",function() {
         var index = $(this).index();
         $(this).addClass("nextlili").siblings().removeClass("nextlili");
     });
@@ -99,10 +198,6 @@
     //这是新添加的菜品的为删除菜单增加的jquery
     $(".addFood").on("click","#button7",function() {
 
-        // $(this).addClass("buttonDel").siblings().removeClass("buttonDel");
-
-        //$(this).addClass("buttonDel").siblings().removeClass("buttonDel");
-
         if($(this).is(".buttonDel")) {
             $(this).removeClass("buttonDel");
         } else {
@@ -112,7 +207,7 @@
     });
 
     //没有菜品的时候提示没有删除
-    $(".buttonDe").click(function () {
+    $(".buttonDe").on("click",function () {
         var index=0;
         $("button.button7").each(function () {
             if($(this).is(".buttonDel")){
@@ -126,7 +221,6 @@
                 $(".buttonDel").remove();
             }
         });
-
     });
 
 
@@ -166,8 +260,8 @@
         $('.tree-toggle').click(function(e) {
             e.preventDefault();
             var $this = $(this).parent().children('ul.tree');
-            $(".tree").not($this).slideUp(600);
-            $this.toggle(700);
+            $(".tree").not($this).slideUp(1200);
+            $this.toggle(1300);
 
             $(".tree").not($this).parent("li").find(".tree-toggle .right-arrow").removeClass("fa-angle-down").addClass("fa-angle-right");
             $this.parent("li").find(".tree-toggle .right-arrow").toggleClass("fa-angle-right fa-angle-down");
@@ -175,8 +269,8 @@
 
         $('.sub-tree-toggle').click(function(e) {
             var $this = $(this).parent().children('ul.sub-tree');
-            $(".sub-tree").not($this).slideUp(600);
-            $this.toggle(700);
+            $(".sub-tree").not($this).slideUp(1200);
+            $this.toggle(1300);
 
             $(".sub-tree").not($this).parent("li").find(".sub-tree-toggle .right-arrow").removeClass("fa-angle-down").addClass("fa-angle-right");
             $this.parent("li").find(".sub-tree-toggle .right-arrow").toggleClass("fa-angle-right fa-angle-down");
