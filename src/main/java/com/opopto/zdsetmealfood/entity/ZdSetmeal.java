@@ -8,6 +8,8 @@ import java.util.List;
 public class ZdSetmeal implements Serializable {
     private Integer id;
 
+    private String standardName;
+
     private String code;
 
     private BigDecimal price;
@@ -40,6 +42,14 @@ public class ZdSetmeal implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getStandardName() {
+        return standardName;
+    }
+
+    public void setStandardName(String standardName) {
+        this.standardName = standardName;
     }
 
     public String getCode() {

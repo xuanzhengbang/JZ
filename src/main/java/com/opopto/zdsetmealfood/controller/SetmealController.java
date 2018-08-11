@@ -31,9 +31,10 @@ public class SetmealController extends BaseApiController {
     private SetmealService setmealService;
 
     @RequestMapping(value = "/setmeal/create", method = RequestMethod.POST)
-    public Object create(String bookDate, String place, String dineType, Integer num, Integer price, String[] foods){
+    public Object create(String standardName, String bookDate, String place, String dineType, Integer num, Integer price, String[] foods){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
         ZdSetmeal setmeal = new ZdSetmeal();
+        setmeal.setStandardName(standardName);
         setmeal.setPrice(BigDecimal.valueOf(price));
         setmeal.setBookDate(bookDate);
         setmeal.setPlace(place);

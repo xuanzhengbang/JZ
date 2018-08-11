@@ -3,6 +3,7 @@
 <mapper namespace="com.opopto.zdsetmealfood.dao.ZdSetmealMapper" >
   <resultMap id="BaseResultMap" type="com.opopto.zdsetmealfood.entity.ZdSetmeal" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="standard_name" property="standardName" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="book_date" property="bookDate" jdbcType="VARCHAR" />
@@ -74,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, code, price, book_date, place, dine_type, num, create_uid, del_flag,
+    id, standard_name, code, price, book_date, place, dine_type, num, create_uid, del_flag,
     create_time, update_time, `desc`
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.opopto.zdsetmealfood.entity.ZdSetmealExample" >
@@ -118,11 +119,11 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into zd_setmeal (code, price, book_date, 
+    insert into zd_setmeal (standard_name, code, price, book_date,
       place, dine_type, num,
       create_uid, del_flag, create_time, 
       update_time, `desc`)
-    values (#{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookDate,jdbcType=VARCHAR},
+    values (#{standardName,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{bookDate,jdbcType=VARCHAR},
       #{place,jdbcType=VARCHAR}, #{dineType,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR},
       #{createUid,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{desc,jdbcType=VARCHAR})
@@ -133,6 +134,9 @@
     </selectKey>
     insert into zd_setmeal
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="standardName != null" >
+        standard_name,
+      </if>
       <if test="code != null" >
         code,
       </if>
@@ -168,6 +172,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="standardName != null" >
+        #{standardName,jdbcType=VARCHAR},
+      </if>
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>
@@ -256,6 +263,7 @@
   <update id="updateByExample" parameterType="map" >
     update zd_setmeal
     set id = #{record.id,jdbcType=INTEGER},
+      standard_name = #{record.standardName,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=DECIMAL},
       book_date = #{record.bookDate,jdbcType=VARCHAR},
@@ -274,6 +282,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.opopto.zdsetmealfood.entity.ZdSetmeal" >
     update zd_setmeal
     <set >
+      <if test="standardName != null" >
+        standard_name = #{standardName,jdbcType=VARCHAR},
+      </if>
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
       </if>
@@ -312,7 +323,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.opopto.zdsetmealfood.entity.ZdSetmeal" >
     update zd_setmeal
-    set code = #{code,jdbcType=VARCHAR},
+    set
+      standard_name = #{standardName,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       book_date = #{bookDate,jdbcType=VARCHAR},
       place = #{place,jdbcType=VARCHAR},

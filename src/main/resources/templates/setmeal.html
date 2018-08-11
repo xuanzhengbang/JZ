@@ -83,6 +83,7 @@
         <thead>
         <tr>
           <th>编号</th>
+          <th>标准</th>
           <th>时间</th>
           <th>地点</th>
           <th>类别</th>
@@ -94,6 +95,7 @@
         <tbody>
         <tr th:each="item : ${ setmeals }">
           <td th:text="${ item.id }"></td>
+          <td th:text="${ item.standardName }"></td>
           <td th:text="${ item.bookDate }"></td>
           <td th:text="${ item.place }"></td>
           <td th:text="${ item.dineType }"></td>
