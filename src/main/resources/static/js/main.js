@@ -46,11 +46,10 @@
     $("#inputButton").on("click",function(){
         //    获取输入框中的菜品名称
         var foodname= $("#input_search").val();
-        var foodtype=$(".nextlili").find("#nexthref").text();
-        if(foodname != null && foodname != "" &&foodtype!=""){
+        if(foodname != null){
             $.ajax({
                 type: "get",
-                url:  "/food/query.json?type="+foodtype+"&foodName="+foodname,
+                url:  "/food/query.json?foodName="+foodname,
                 dataType: 'html',
                 contentType: "application/x-www-form-urlencoded; charset=utf-8",
                 success: function (result) {
@@ -67,12 +66,12 @@
     });
     //重置按钮的设置
     $("#resertButton").on("click",function () {
-        var name=$(".nextlili").find("#nexthref").text();
+        // var name=$(".nextlili").find("#nexthref").text();
         // alert(name);
         var flag = false;
         $.ajax({
             type: "get",
-            url: "/food/list?type="+name,
+            url: "/food/list",
             dataType: 'text',
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
@@ -80,7 +79,6 @@
                 result=JSON.parse(result);
                 // alert(result.data[0].name);
                 for (var i in result.data){
-
                     $("#bts").append("<span><button type='button' class='button button4' id='button4' value='"+result.data[i].name+"'>"+result.data[i].name+"</button></span>");
                 }
                 caipin();

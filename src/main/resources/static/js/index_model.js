@@ -61,6 +61,7 @@ $(".btn-primary").on("click",function () {
     var model_dineType=$("#model_dineType").find("option:selected").text();
     var price=$("#price").val();
     var startTable=$("#Stable").val();
+    var standardName=$("#foodName").val();
 
     if( !$("table tr:visible").length){
         $("#showError").empty();
@@ -72,21 +73,22 @@ $(".btn-primary").on("click",function () {
         $("#showError").empty();
         $("#showError").append("<span>您没填写菜品价格！</span>");
 
-    }else if(!(startTable)){
+    }else if(!startTable){
         $("#showError").empty();
-        $("#showError").append("<span>您没选择桌位！</span>");
+        $("#showError").append("<span>您没填写桌位！</span>");
+    }else if(!standardName){
+        $("#showError").empty();
+        $("#showError").append("<span>您没填写菜品名称！</span>");
     }else{
-        storage(date,bookDate,place,model_dineType,price,startTable);
+        storage(date,bookDate,place,model_dineType,price,startTable,standardName);
     }
-        //判断完毕后再进行打印
 
-    // post_create_setmeal(date,bookDate,place,model_dineType,price,startTable,["清汤甲鱼","年糕炒蟹块","蛋黄焗蟹"])
 
 });
 
 
 //根据ajax请求判断是否成功插入数据库
-function storage(date,book,place,model_dineType,price,startTable){
+function storage(date,book,place,model_dineType,price,startTable,standardName){
         var bookDate=date+" "+book;
         var num=startTable;
        // 获取表格内所有的内容
@@ -94,11 +96,11 @@ function storage(date,book,place,model_dineType,price,startTable){
         $("table#model_table").find("td").each(function () {
             foods.push($(this).text());
         });
-        console.log(foods);
+
        $.ajax({
             type: "post",
             url: "/setmeal/create",
-            data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&num="+num+"&price="+price+"&foods="+foods,
+            data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&standardName="+standardName+"&num="+num+"&price="+price+"&foods="+foods,
             dataType: "text",
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
@@ -144,52 +146,65 @@ function printFood(date,book,place,model_dineType,num,price) {
     LODOP.PREVIEW();
 
 }
-//在菜单保存页面打印頁面同時并保存数据
-$("#printBtn").on("click",function () {
-    //将需要提交的数据获取
-    var date=$("#date_input").val();
-    var dateFood=$("#foodType").find("option:selected").text();
-    var place=$("#modal_place").text();
-    var model_dineType=$("#modal_dineType").text();
-    var price=$("#modal_price").text();
-    var num=$("#modal_num").text();
-    var foods = [];
-    $("table#model_table").find("td").each(function () {
-        foods.push($(this).text());
-    });
-    if(date!=null){
-        var bookDate=date+" "+dateFood;
-        $.ajax({
-            type: "post",
-            url: "/setmeal/create",
-            data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&num="+num+"&price="+price+"&foods="+foods,
-            dataType: "text",
-            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            success: function (result) {
-                //
-                $("#modal_time").html(bookDate);
-                $("#chosenext").css("display","none");
-                CreateTwoFormPage();
-                LODOP.PREVIEW();
-            },
-            error:function(result){
-                $("#showError").empty();
-                $("#showError").append("<span>数据保存不成功！</span>");
-
-            }
-        });
-    }
-});
 //打印调用函数
 function CreateOneFormPage(){
     LODOP=getLodop();
     LODOP.PRINT_INIT("军转大酒店菜单");
- 
+
     LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
     LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
     LODOP.SET_PRINT_STYLEA(2,"Bold",1);
     LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
 };
+//在菜单保存页面打印頁面同時并保存数据
+$("#printBtn").on("click",function () {
+    //将需要提交的数据获取
+    $("#showError").empty();
+    var date=$("#date_input").val();
+    var dateFood=$("#foodType").find("option:selected").text();
+    var place=$("#model_chageplace").find("option:selected").text();
+    var model_dineType=$("#model_chagedineType").find("option:selected").text();
+    var price=$("#chageprice").val();
+    var num=$("#chageStable").val();
+
+
+    if (!date){
+        $("#showError").empty();
+        $("#showError").append("<span>未选择时间！</span>");
+    }else if(!dateFood) {
+        $("#showError").empty();
+        $("#showError").append("<span>您没选择餐型！</span>");
+    } else if(!place){
+        $("#showError").empty();
+        $("#showError").append("<span>您没填写就餐地点！</span>");
+    } else if(!model_dineType){
+        $("#showError").empty();
+        $("#showError").append("<span>未选择餐厅类别！</span>");
+    }else if(!price){
+        $("#showError").empty();
+        $("#showError").append("<span>未填写价格！</span>");
+    }
+    else if(!num){
+        $("#showError").empty();
+        $("#showError").append("<span>未添加桌数！</span>");
+    }else{
+        $("#printTable").append("<tr><td>军转大酒店菜单</td></tr>");
+        $("#printTable").append("<tr><td>时间："+date+"</td></tr>");
+        $("#printTable").append("<tr><td>餐型："+dateFood+"</td></tr>");
+        $("#printTable").append("<tr><td>地点："+place+"</td></tr>");
+        $("#printTable").append("<tr><td>类别："+model_dineType+"</td></tr>");
+        $("#printTable").append("<tr><td>标准："+price+"元/桌</td></tr>");
+        $("#printTable").append("<tr><td>桌数："+num+"桌</td></tr>");
+        $("#printTable").append("<tr><td>----------------------------------------------------------</td></tr>");
+        $("table#model_table").find("td").each(function () {
+            $("#printTable").append("<tr><td>"+$(this).text()+"</td></tr>");
+        });
+        CreateTwoFormPage();
+        LODOP.PREVIEW();
+
+    }
+});
+
 function CreateTwoFormPage() {
     LODOP=getLodop();
     LODOP.PRINT_INIT("军转大酒店菜单");
@@ -197,6 +212,6 @@ function CreateTwoFormPage() {
     LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
     LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
     LODOP.SET_PRINT_STYLEA(2,"Bold",1);
-    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("myModal").innerHTML);
+    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
 }
 

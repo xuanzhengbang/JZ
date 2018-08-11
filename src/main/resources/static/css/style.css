@@ -14,7 +14,7 @@ ul,li {
 
 }
 caption{
-	font-size: x-large;
+	font-size: 36px;
 	text-align: center;
 	margin-bottom: 1%;
 	color: aliceblue;
@@ -22,11 +22,12 @@ caption{
 
 #contents{
 	color: white;
-	padding: 3% 8% 4% 8%;
-	margin: 13% 0 0 10%;
-	width: 80%;
+	padding: 3% 2% 2% 2%;
+	margin: 13% 0 0 6%;
+	width: 86%;
 	height: auto;
-	font-size: 16px;
+	font-size: 20px;
+	font-weight: bold;
 	background: rgba(0, 0, 0, 0.3);
 }
 /*正邦修改前端*/
@@ -46,7 +47,7 @@ caption{
 }
 .nav-header{
 	color: white;
-	font-size:20px!important;
+	font-size:24px!important;
 }
 
 .text-left{
@@ -79,10 +80,11 @@ caption{
 
 /**/
 /*删除del的显示*/
-
 .buttonDel{
-	border: 3px solid black!important;
+	border: 4px solid black!important;
 }
+
+
 /*sdasda*/
 .button {
 	background-color: #4CAF50; /* Green */
@@ -97,9 +99,9 @@ caption{
 	cursor: pointer;
 }
 .button4 {
-	background-color: rgba(0,0,0,0.3);
-	color: #FAFAFA;
-	border: 2px solid #FAFAFA;
+	background-color: #f4f4f4;
+	color: #333;
+	border: 2px solid #0a4bff;
 	border-radius: 10px;
 }
 #inputButton{
@@ -145,7 +147,7 @@ caption{
 }
 /*专门负责button的*/
 .button6{
-	border: 3px solid #55b4ff!important;
+	border: 4px solid black!important;
 }
 .button5 {
 	background-color: white;
@@ -6076,9 +6078,6 @@ ul.normal-list {
 }
 ul.normal-list li {
 	line-height: 38px;
-}
-.buttonDel{
-	border: 2px solid black!important;
 }
 th, td {
 	text-align: center;

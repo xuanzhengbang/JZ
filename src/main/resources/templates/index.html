@@ -89,7 +89,7 @@
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="width: 40%;">
                     <h4 class="" ><input class="form-control "id="input_search" placeholder="输入查询菜品 " >
-                      <button type="button"  id="inputButton">查询</button>
+                      <button type="submit"  id="inputButton">查询</button>
                       <!--一个是提交一个是重置-->
                       <button type="button"  id="resertButton">重置</button>
                       </input>
@@ -177,16 +177,13 @@
           <div class="form-group">
             <label for="name">地点：</label>
             <select name="place" id="model_place" class="form-control">
-              <option>二楼包厢</option>
-              <optgroup>
-                <option>二楼包厢</option>
-                <option>二楼包厢</option>
-              </optgroup>
+
             </select>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="name">类别：</label>
             <select name="dineType" id="model_dineType" class="form-control">
-              <option>满月</option>
+
             </select>
           </div>
         </div><br/>
@@ -202,6 +199,15 @@
             <label for="name">桌数：</label>
             <input type="number" min="1" max="99" class="form-control" id="Stable" style="width: 70px">
             <label>桌</label>
+          </div>
+        </div><br/>
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="name">菜品名称：</label>
+            <input type="input"  class="form-control" id="foodName" style="width: 170px">
+            <label>套餐</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
           </div>
         </div><br/>
 

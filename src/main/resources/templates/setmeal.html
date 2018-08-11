@@ -29,7 +29,7 @@
 
       <ul class="nav navbar-nav navbar-right user-nav">
         <li class="user-name"><span style="color: white;">管理员</span></li>
-        <li class="dropdown avatar-dropdown"> <img src="/img/avatar.jpg;" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <li class="dropdown avatar-dropdown"> <img src="http://img.bus.leiven.com/avatar.jpg" class="img-circle avatar" alt="user name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
           <ul class="dropdown-menu user-dropdown">
             <li>
               <a href="/user/logout.do"><span class="fa fa-power-off"></span> 退出登录</a>
@@ -67,8 +67,6 @@
         <li class="active ripple">
           <a href="/setmeal" class="sub-tree-toggle nav-header"><span class="fa-home fa"></span> 套餐列表<span class="fa-angle-right fa right-arrow text-right"></span> </a>
         </li>
-
-
       </ul>
     </div>
   </div>
@@ -128,7 +126,7 @@
           &times;
         </button>
         <h4 class="modal-title" id="myModalLabel">
-          套餐信息
+          套餐信息:&nbsp;&nbsp;&nbsp;<span id="foodTypeName"></span>
         </h4>
       </div>
       <div class="modal-body">
@@ -146,15 +144,47 @@
               </select>
             </div>
             <br/>
-            <label  class="modal_label" for="name">地点：<span id="modal_place"> 二楼包厢</span></label>  <label  class="modal_label_right" for="name">类别：<span id="modal_dineType">包厢</span> </label> <br/>
-            <label class="modal_label" for="name">标准：<u>&nbsp;<span  id="modal_price">1200</span>&nbsp;&nbsp;</u> 元/桌</label>  <label  class="modal_label_right" for="name">桌数：<u>&nbsp;<span id="modal_num">10</span>&nbsp;&nbsp;</u> 桌 </label> <br/>
+            <label  class="modal_label" for="name">地点：<span id="modal_place"> 二楼包厢</span></label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label  class="modal_label_right" for="name">类别：<span id="modal_dineType">包厢</span> </label> <br/>
+
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="name" class="modal_label">地点：</label>
+                <select name="place" id="model_chageplace" class="form-control">
+
+                </select>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="name"  class="modal_label_right">类别：</label>
+                <select name="dineType" id="model_chagedineType" class="form-control">
+
+                </select>
+              </div>
+            </div><br/>
+
+            <label class="modal_label" for="name">标准：<u>&nbsp;<span  id="modal_price">1200</span>&nbsp;&nbsp;</u> 元/桌</label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label  class="modal_label_right" for="name">桌数：<u>&nbsp;<span id="modal_num">10</span>&nbsp;&nbsp;</u> 桌 </label> <br/>
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="name" class="modal_label">标准：</label>
+                <input type="number" min="100" max="9999" class="form-control" id="chageprice" style="width: 100px"  onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="输入价格">
+                <label style="font-size: 17px;">元/桌</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="name" class="modal_label_right">桌数：</label>
+                <input type="number" min="1" max="99" class="form-control" id="chageStable" style="width: 70px">
+                <label style="font-size: 17px;">桌</label>
+              </div>
+            </div><br/>
           </div>
         </div><br/>
         <table id="model_table" class="table table-bordered table-hover" style="width: 86%; margin-left: 5%">
           <tbody>
           </tbody>
         </table>
-
+        <div id="showError"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -165,7 +195,12 @@
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal -->
-  <div id="showError"></div>
+
+  <div id="print" style="width:120px;font-size:2px;display: none">
+    <table id="printTable">
+
+    </table>
+  </div>
 </div>
 
 
@@ -196,11 +231,40 @@
             $('#modal_dineType').html(" <u>&nbsp;" + result.data.dineType + "&nbsp;&nbsp;</u>" );
             $('#modal_price').html(result.data.price);
             $('#modal_num').html(result.data.num);
+            $('#foodTypeName').html(result.data.standardName);
 
             $("#model_table").html("");
             for (var i in result.data.items){
                 var tmp =  "<tr><td>"+result.data.items[i].foodName+"</td></tr>";
                 $(tmp).appendTo($('#model_table'));
+            }
+        });
+        //地点 类别包厢
+        $.get("/dineType/list", function(result){
+            if($("#showError").text())
+            {
+                $("#showError").empty();
+            }
+            $("#model_chagedineType").empty();
+            for (var i in result.data){
+                $("#model_chagedineType").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+            }
+        });
+
+        $.get("/place/list", function(result){
+            $("#model_chageplace").empty();
+            for (var i in result.data){
+                if(result.data[i].items.length>0){
+                    var htm = "<optgroup label=" + result.data[i].name + ">";
+                    for(var k in result.data[i].items){
+                        htm += "<option value='" + result.data[i].items[k].name + "' >"+ result.data[i].items[k].name +"</option>";
+                    }
+                    htm += "</optgroup>";
+                    $("#model_chageplace").append(htm);
+                } else {
+                    $("#model_chageplace").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+                }
+
             }
         });
     }
