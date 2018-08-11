@@ -66,4 +66,13 @@ public class FoodTypeController extends BaseApiController {
         return model;
     }
 
+    @RequestMapping(value = "/foodType/list", method = RequestMethod.GET)
+    public Object list(){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        List<ZdFoodType> foodTypes = foodTypeService.list();
+        result.put("data", foodTypes);
+        result.put("total", foodTypes.size());
+        return result;
+    }
+
 }
