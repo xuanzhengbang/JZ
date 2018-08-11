@@ -83,6 +83,8 @@ $(".btn-primary").on("click",function () {
     // post_create_setmeal(date,bookDate,place,model_dineType,price,startTable,["清汤甲鱼","年糕炒蟹块","蛋黄焗蟹"])
 
 });
+
+
 //根据ajax请求判断是否成功插入数据库
 function storage(date,book,place,model_dineType,price,startTable){
         var bookDate=date+" "+book;
@@ -142,6 +144,43 @@ function printFood(date,book,place,model_dineType,num,price) {
     LODOP.PREVIEW();
 
 }
+//在菜单保存页面打印頁面同時并保存数据
+$("#printBtn").on("click",function () {
+    //将需要提交的数据获取
+    var date=$("#date_input").val();
+    var dateFood=$("#foodType").find("option:selected").text();
+    var place=$("#modal_place").text();
+    var model_dineType=$("#modal_dineType").text();
+    var price=$("#modal_price").text();
+    var num=$("#modal_num").text();
+    var foods = [];
+    $("table#model_table").find("td").each(function () {
+        foods.push($(this).text());
+    });
+    if(date!=null){
+        var bookDate=date+" "+dateFood;
+        $.ajax({
+            type: "post",
+            url: "/setmeal/create",
+            data:  "bookDate="+bookDate+"&place="+place+"&dineType="+model_dineType+"&num="+num+"&price="+price+"&foods="+foods,
+            dataType: "text",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (result) {
+                //
+                $("#modal_time").html(bookDate);
+                $("#chosenext").css("display","none");
+                CreateTwoFormPage();
+                LODOP.PREVIEW();
+            },
+            error:function(result){
+                $("#showError").empty();
+                $("#showError").append("<span>数据保存不成功！</span>");
+
+            }
+        });
+    }
+});
+//打印调用函数
 function CreateOneFormPage(){
     LODOP=getLodop();
     LODOP.PRINT_INIT("军转大酒店菜单");
@@ -151,3 +190,13 @@ function CreateOneFormPage(){
     LODOP.SET_PRINT_STYLEA(2,"Bold",1);
     LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
 };
+function CreateTwoFormPage() {
+    LODOP=getLodop();
+    LODOP.PRINT_INIT("军转大酒店菜单");
+
+    LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
+    LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
+    LODOP.SET_PRINT_STYLEA(2,"Bold",1);
+    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("myModal").innerHTML);
+}
+

@@ -76,14 +76,7 @@
 
   <!-- start: content -->
   <div id="content">
-<!--    <div class="panel" style="background-color: #55b4ff;">
-      <div class="panel-body" style="padding: 0px">
-        <div class="col-md-6 col-sm-12" style="padding-top: 18px;">
-          <h3 class="animated fadeInLeft"> &nbsp;&nbsp; </h3>
-          <p class="animated fadeInDown"><span class="fa  fa-map-marker"> &nbsp;&nbsp;</span></p>
-        </div>
-      </div>
-    </div>-->
+
     <div id="contents" >
       <table class="table" >
         <caption >套餐列表</caption>
@@ -139,9 +132,20 @@
       <div class="modal-body">
         <div class="form-inline">
           <div class="form-group">
-            <label id="modal_time" class="modal_label" for="name">时间： 2018-08-04 晚餐</label> <br/>
-            <label id="modal_place" class="modal_label" for="name">地点： 二楼包厢</label>  <label id="modal_dineType" class="modal_label_right" for="name">类别： 包厢</label> <br/>
-            <label id="modal_price" class="modal_label" for="name">标准：1200 元/桌</label>  <label id="modal_num" class="modal_label_right" for="name">桌数： 10 桌</label> <br/>
+            <label  class="modal_label" for="name">首次时间： <span id="modal_time">2018-08-04 晚餐</span></label> <br/>
+            <div id="chosenext">
+              <label for="name" id="modal_newtime" class="modal_label">本次时间：</label>
+              <input type="date" name="date" class="form-control " id="date_input"/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <label for="name" class="modal_label">餐型：</label>
+              <select name="order" class="form-control" id="foodType">
+                <option>午餐</option>
+                <option>晚餐</option>
+              </select>
+            </div>
+            <br/>
+            <label  class="modal_label" for="name">地点：<span id="modal_place"> 二楼包厢</span></label>  <label  class="modal_label_right" for="name">类别：<span id="modal_dineType">包厢</span> </label> <br/>
+            <label class="modal_label" for="name">标准：<u>&nbsp;<span  id="modal_price">1200</span>&nbsp;&nbsp;</u> 元/桌</label>  <label  class="modal_label_right" for="name">桌数：<u>&nbsp;<span id="modal_num">10</span>&nbsp;&nbsp;</u> 桌 </label> <br/>
           </div>
         </div><br/>
         <table id="model_table" class="table table-bordered table-hover" style="width: 86%; margin-left: 5%">
@@ -153,12 +157,13 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭
         </button>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" id="printBtn">
           打  印
         </button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal -->
+  <div id="showError"></div>
 </div>
 
 
@@ -169,17 +174,26 @@
 <!-- plugins -->
 <script src="/js/plugins/jquery.nicescroll.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/index_model.js"></script>
+<script src="/js/LodopFuncs.js"></script>
 
 <script>
     function loadInfo(obj) {
         //加载模态框数据
         var code = $(obj).attr("id");
+        //将打印后的时间选择显示出来div
+        $("#chosenext").show();
+        //每次将输入框置空
+        $("#date_input").val("");
+        //清空错误列表
+        $("#showError").empty();
+
         $.get("/setmeal/getByCode?code="+code, function(result){
-            $('#modal_time').html("时间： <u>&nbsp;" + result.data.bookDate+"&nbsp;&nbsp;</u>");
-            $('#modal_place').html("地点： <u>&nbsp;" + result.data.place + "&nbsp;&nbsp;</u>");
-            $('#modal_dineType').html("类别： <u>&nbsp;" + result.data.dineType + "&nbsp;&nbsp;</u>" );
-            $('#modal_price').html( "标准： <u>&nbsp;"+result.data.price +"&nbsp;&nbsp;</u> 元/桌");
-            $('#modal_num').html("桌数： <u>&nbsp;" + result.data.num + "&nbsp;&nbsp;</u> 桌");
+            $('#modal_time').html(" <u>&nbsp;" + result.data.bookDate+"&nbsp;&nbsp;</u>");
+            $('#modal_place').html(" <u>&nbsp;" + result.data.place + "&nbsp;&nbsp;</u>");
+            $('#modal_dineType').html(" <u>&nbsp;" + result.data.dineType + "&nbsp;&nbsp;</u>" );
+            $('#modal_price').html(result.data.price);
+            $('#modal_num').html(result.data.num);
 
             $("#model_table").html("");
             for (var i in result.data.items){
@@ -188,6 +202,7 @@
             }
         });
     }
+
 </script>
 </body>
 
