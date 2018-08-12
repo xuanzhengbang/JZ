@@ -85,7 +85,7 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
-      order by ${orderByClause}
+      order by ${orderByClause} desc
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -118,6 +118,7 @@
     <if test="foodName != null" >
       AND f.`name` like  concat('%',#{foodName} ,'%')
     </if>
+    order by id desc
   </select>
 
   <select id="listAndTypeName" resultMap="BaseResultMap" >
@@ -129,7 +130,7 @@
     WHERE
     f.type_code = ft.`code`
     AND f.del_flag = 0
-    ORDER BY f.id
+    ORDER BY f.id desc
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

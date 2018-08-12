@@ -32,6 +32,7 @@ public class ZdFoodTypeService {
     public List<ZdFoodType> list(){
         ZdFoodTypeExample example = new ZdFoodTypeExample();
         example.createCriteria().andDelFlagEqualTo(0);
+        example.setOrderByClause("id");
         List<ZdFoodType> list = foodTypeMapper.selectByExample(example);
         return list;
     }
