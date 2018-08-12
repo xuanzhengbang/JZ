@@ -82,7 +82,7 @@ $(".btn-primary").on("click",function () {
 
 
 });
-
+var LODOP;
 
 //根据ajax请求判断是否成功插入数据库
 function storage(date,book,place,model_dineType,price,startTable,standardName){
@@ -116,13 +116,14 @@ function printFood(date,book,place,model_dineType,num,price) {
     //清空当前元素所属的页面，再添加上相应的属性
     //跳转页面进行打印，跳转只是增加页面内容
     $("#printTable").append("<tr><td>军转大酒店菜单</td></tr>");
+    $("#printTable").append("<tr><td>------------------------</td></tr>");
     $("#printTable").append("<tr><td>时间："+date+"</td></tr>");
     $("#printTable").append("<tr><td>餐型："+book+"</td></tr>");
     $("#printTable").append("<tr><td>地点："+place+"</td></tr>");
     $("#printTable").append("<tr><td>类别："+model_dineType+"</td></tr>");
     $("#printTable").append("<tr><td>标准："+price+"元/桌</td></tr>");
     $("#printTable").append("<tr><td>桌数："+num+"桌</td></tr>");
-    $("#printTable").append("<tr><td>----------------------------------------------------------</td></tr>");
+    $("#printTable").append("<tr><td>-------------------------</td></tr>");
 
     var table = document.getElementById("printTable");
     var bts = window.localStorage.getItem("bts");
@@ -139,24 +140,16 @@ function printFood(date,book,place,model_dineType,num,price) {
         }
     }
 
-    CreateOneFormPage();
-    LODOP.PREVIEW();
+    CreateTwoFormPage();
+    LODOP.PRINT();
 
 }
-//打印调用函数
-function CreateOneFormPage(){
-    LODOP=getLodop();
-    LODOP.PRINT_INIT("军转大酒店菜单");
 
-    LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
-    LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
-    LODOP.SET_PRINT_STYLEA(2,"Bold",1);
-    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
-};
 //在菜单保存页面打印頁面同時并保存数据
 $("#printBtn").on("click",function () {
     //将需要提交的数据获取
     $("#showError").empty();
+    $("#printTable").empty();
     var date=$("#date_input").val();
     var dateFood=$("#foodType").find("option:selected").text();
     var place=$("#model_chageplace").find("option:selected").text();
@@ -182,29 +175,37 @@ $("#printBtn").on("click",function () {
         $("#showError").append("<span>未添加桌数！</span>");
     }else{
         $("#printTable").append("<tr><td>军转大酒店菜单</td></tr>");
+        $("#printTable").append("<tr><td>------------------------</td></tr>");
         $("#printTable").append("<tr><td>时间："+date+"</td></tr>");
         $("#printTable").append("<tr><td>餐型："+dateFood+"</td></tr>");
         $("#printTable").append("<tr><td>地点："+place+"</td></tr>");
         $("#printTable").append("<tr><td>类别："+model_dineType+"</td></tr>");
         $("#printTable").append("<tr><td>标准："+price+"元/桌</td></tr>");
         $("#printTable").append("<tr><td>桌数："+num+"桌</td></tr>");
-        $("#printTable").append("<tr><td>----------------------------------------------------------</td></tr>");
+        $("#printTable").append("<tr><td>------------------------</td></tr>");
         $("table#model_table").find("td").each(function () {
             $("#printTable").append("<tr><td>"+$(this).text()+"</td></tr>");
         });
-        CreateTwoFormPage();
-        LODOP.PREVIEW();
 
+        CreateTwoFormPage();
+        LODOP.PRINT();
     }
 });
 
 function CreateTwoFormPage() {
-    LODOP=getLodop();
-    LODOP.PRINT_INIT("军转大酒店菜单");
 
-    LODOP.ADD_PRINT_TEXT(10,10,100,300,"jz.opopto.com");
-    LODOP.SET_PRINT_STYLEA(2,"FontSize",12);
-    LODOP.SET_PRINT_STYLEA(2,"Bold",1);
-    LODOP.ADD_PRINT_HTM(40,40,"100%","10%",document.getElementById("print").innerHTML);
+    LODOP=getLodop();
+    LODOP.PRINT_INIT(10,10,1280,453,"军转大酒店菜单");
+    LODOP.ADD_PRINT_TEXT(21,300,151,30,"jz.banana96.com");
+    // ADD_PRINT_LINE(Top1,Left1, Top2, Left2,intLineStyle, intLineWidth)
+    LODOP.SET_PRINT_STYLEA(0,"FontSize",12);
+    LODOP.SET_PRINT_STYLEA(0,"Bold",1);
+    LODOP.SET_PRINT_STYLEA(0,"ItemType",1);
+    LODOP.SET_PRINT_STYLEA(0,"Horient",2);
+    LODOP.SET_PRINT_STYLEA(0,"Vorient",3);
+    LODOP.SET_PRINT_STYLEA(-1,"FontSize",20);
+    // ADD_PRINT_HTML(Top,Left,Width,Height, strHtmlContent)
+    LODOP.ADD_PRINT_HTM(50,40,"100%","100%",document.getElementById("print").innerHTML);
+
 }
 
