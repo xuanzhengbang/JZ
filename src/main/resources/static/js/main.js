@@ -1,7 +1,7 @@
 (function(jQuery) {
     var $ = jQuery;
-    var cache = window.localStorage.getItem("bts");
     if(cache != null){
+    var cache = window.localStorage.getItem("bts");
         var arr = cache.split(",");
         for(var i in arr) {
             if(arr[i] != "" && arr[i] != "null" && arr[i] != null)
@@ -44,6 +44,8 @@
 
     //搜索查询的餐品
     $("#inputButton").on("click",function(){
+
+        //缓存的添加
         //    获取输入框中的菜品名称
         var foodname= $("#input_search").val();
         if(foodname != null){

@@ -76,9 +76,6 @@ $(".btn-primary").on("click",function () {
     }else if(!startTable){
         $("#showError").empty();
         $("#showError").append("<span>您没填写桌位！</span>");
-    }else if(!standardName){
-        $("#showError").empty();
-        $("#showError").append("<span>您没填写菜品名称！</span>");
     }else{
         storage(date,bookDate,place,model_dineType,price,startTable,standardName);
     }
