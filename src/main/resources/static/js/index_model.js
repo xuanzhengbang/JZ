@@ -161,7 +161,7 @@ $("#printBtn").on("click",function () {
     var dateFood=$("#foodType").find("option:selected").text();
     var place=$("#model_chageplace").find("option:selected").text();
     var model_dineType=$("#model_chagedineType").find("option:selected").text();
-    var price=$("#chageprice").val();
+    var price=$("#modal_price").text();
     var num=$("#chageStable").val();
 
 
@@ -177,11 +177,7 @@ $("#printBtn").on("click",function () {
     } else if(!model_dineType){
         $("#showError").empty();
         $("#showError").append("<span>未选择餐厅类别！</span>");
-    }else if(!price){
-        $("#showError").empty();
-        $("#showError").append("<span>未填写价格！</span>");
-    }
-    else if(!num){
+    } else if(!num){
         $("#showError").empty();
         $("#showError").append("<span>未添加桌数！</span>");
     }else{
