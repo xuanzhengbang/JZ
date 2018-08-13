@@ -121,20 +121,17 @@ function printFood(date,book,place,model_dineType,num,price) {
     $(".type").append("类别："+model_dineType);
     $(".price").append("标准："+price+"元/桌");
     $(".num").append("桌数："+num+"桌");
-    
+
+    var table = document.getElementById("printTable");
     var bts = window.localStorage.getItem("bts");
     if(bts != null&& bts !="null"){
         var bts_array = bts.split(',');
         if(bts_array!=null && bts_array.length>0){
-            var k=0;
-            for (var i=0;i<bts_array.length;){
-                $("#printTable").append("<tr class='table"+i+"'></tr>");
-                k=i;
-                for(var j=0;j<2;j++){
-                    if(bts_array[i]){
-                        $(".table"+k+"").append("<td>"+bts_array[i]+"</td>")
-                        ++i;
-                    }
+            for(var k in bts_array){
+                if(bts_array[k].length>0){
+                    var newRow = table.insertRow();
+                    var cell = newRow.insertCell(0);
+                    cell.innerHTML=bts_array[k];
                 }
             }
         }
@@ -189,23 +186,28 @@ $("#printBtn").on("click",function () {
         $(".type").append("类别："+model_dineType);
         $(".price").append("标准："+price+"元/桌");
         $(".num").append("桌数："+num+"桌");
-        var foods=new Array();
-        var j=0;
+
         $("table#model_table").find("td").each(function () {
-            foods[j]=$(this).text();
-            j++;
+            $("#printTable").append("<tr><td>"+$(this).text()+"</td></tr>");
         });
-        var k=0;
-        for (var i=0;i<foods.length;){
-           $("#printTable").append("<tr class='table"+i+"'></tr>");
-           k=i;
-           for(var j=0;j<2;j++){
-               if(foods[i]){
-                   $(".table"+k+"").append("<td>"+foods[i]+"</td>")
-                   ++i;
-               }
-            }
-        }
+
+        // var foods=new Array();
+        // var j=0;
+        // $("table#model_table").find("td").each(function () {
+        //     foods[j]=$(this).text();
+        //     j++;
+        // });
+        // var k=0;
+        // for (var i=0;i<foods.length;){
+        //    $("#printTable").append("<tr class='table"+i+"'></tr>");
+        //    k=i;
+        //    for(var j=0;j<2;j++){
+        //        if(foods[i]){
+        //            $(".table"+k+"").append("<td>"+foods[i]+"</td>")
+        //            ++i;
+        //        }
+        //     }
+        // }
 
         CreateTwoFormPage();
         LODOP.PREVIEW();
@@ -223,7 +225,7 @@ function CreateTwoFormPage() {
     LODOP.SET_PRINT_STYLEA(0,"Horient",2);
     LODOP.SET_PRINT_STYLEA(0,"Vorient",3);
     // ADD_PRINT_HTML(Top,Left,Width,Height, strHtmlContent)
-    LODOP.ADD_PRINT_HTM(50,0,"80mm","100%",document.getElementById("print").innerHTML);
+    LODOP.ADD_PRINT_HTM(20,0,"80mm","100%",document.getElementById("print").innerHTML);
 
 }
 
