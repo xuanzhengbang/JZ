@@ -105,6 +105,22 @@
     from zd_setmeal
     where code = #{code,jdbcType=VARCHAR}
   </select>
+  <select id="selectByStandardName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from zd_setmeal
+    where standard_name = #{standardName,jdbcType=VARCHAR}
+  </select>
+  <select id="listAllSetmeal" resultMap="BaseResultMap">
+  SELECT
+      z.*,
+      convert(SUBSTRING_INDEX(z.standard_name, '元套餐', 1),signed) o,
+      convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed) t
+  FROM
+      zd_setmeal z
+      WHERE z.del_flag =0
+  ORDER BY o,t
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from zd_setmeal
     where id = #{id,jdbcType=INTEGER}
@@ -338,4 +354,19 @@
       `desc` = #{desc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getStandardName" parameterType="java.lang.Integer" resultMap="StandardMap">
+    select
+  CONCAT(z.price,'元套餐',convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed)+1) standardName,
+  convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed)+1 t
+  FROM
+      zd_setmeal z
+  WHERE z.price = #{price,jdbcType=INTEGER}
+  ORDER BY t DESC
+  LIMIT 1;
+  </select>
+  <resultMap id="StandardMap" type="map">
+    <id column="standardName" property="standardName" jdbcType="VARCHAR" />
+    <id column="t" property="t" jdbcType="INTEGER" />
+  </resultMap>
 </mapper>

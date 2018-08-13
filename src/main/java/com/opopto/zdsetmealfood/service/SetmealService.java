@@ -64,4 +64,24 @@ public class SetmealService {
         return setmeal;
     }
 
+    public ZdSetmeal getByStandardName(String standardName){
+        ZdSetmeal setmeal = setmealMapper.selectByStandardName(standardName);
+        return setmeal;
+    }
+
+    public void deleteById(Integer id){
+        ZdSetmeal setmeal = setmealMapper.selectByPrimaryKey(id);
+        setmeal.setDelFlag(1);
+        setmealMapper.updateByPrimaryKeySelective(setmeal);
+        setmealItemMapper.deleteBySetmealCode(setmeal.getCode());
+    }
+
+    public List<ZdSetmeal> listAllByOrder(){
+        return setmealMapper.listAllSetmeal();
+    }
+
+    public Map<String, Object> getStandardName(Integer price){
+        return setmealMapper.getStandardName(price);
+    }
+
 }

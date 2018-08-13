@@ -80,19 +80,20 @@
         <caption >套餐列表</caption>
         <thead>
         <tr>
-          <th>编号</th>
+          <!--<th>编号</th>-->
           <th>标准</th>
           <th>时间</th>
           <th>地点</th>
           <th>类别</th>
           <th>标准</th>
           <th>桌数</th>
-          <th>更多</th>
+          <th>复用</th>
+          <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${ setmeals }">
-          <td th:text="${ item.id }"></td>
+          <!--<td th:text="${ item.id }"></td>-->
           <td th:text="${ item.standardName }"></td>
           <td th:text="${ item.bookDate }"></td>
           <td th:text="${ item.place }"></td>
@@ -100,7 +101,10 @@
           <td th:text="${ item.price }"></td>
           <td th:text="${ item.num }"></td>
           <td>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" th:id="${item.code}" onclick="loadInfo(this)">更多</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" th:id="${item.code}" onclick="loadInfo(this)">复用</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" th:id="${item.id}" onclick="del(this)">删除</button>
           </td>
         </tr>
         </tbody>
@@ -264,6 +268,23 @@
 
             }
         });
+    }
+
+    function del(obj) {
+        if (confirm("确认要删除？")) {
+            var id = $(obj).attr("id");
+            $.ajax({
+                type : "post",
+                url : "/setmeal/del.do",
+                data : "id=" + id,
+                dataType : 'html',
+                contentType : "application/x-www-form-urlencoded; charset=utf-8",
+                success : function(result) {
+                    //$(".table tr:eq(" + id + ")").remove();
+                    location.reload();
+                }
+            });
+        }
     }
 
 </script>

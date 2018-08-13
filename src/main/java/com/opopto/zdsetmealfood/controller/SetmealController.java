@@ -33,6 +33,12 @@ public class SetmealController extends BaseApiController {
     @RequestMapping(value = "/setmeal/create", method = RequestMethod.POST)
     public Object create(@RequestParam(required = false, defaultValue = "") String standardName, String bookDate, String place, String dineType, Integer num, Integer price, String[] foods){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+
+        if( standardName.isEmpty() ||setmealService.getByStandardName(standardName) != null){
+            result = ServiceParamHelper.createFailResultJSONObject();
+            return result;
+        }
+
         ZdSetmeal setmeal = new ZdSetmeal();
         setmeal.setStandardName(standardName);
         setmeal.setPrice(BigDecimal.valueOf(price));
@@ -57,7 +63,7 @@ public class SetmealController extends BaseApiController {
     public Object list(){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
 
-        List<ZdSetmeal> setmeals = setmealService.list();
+        List<ZdSetmeal> setmeals = setmealService.listAllByOrder();
         result.put("data", setmeals);
         result.put("total", setmeals.size());
 
@@ -73,7 +79,7 @@ public class SetmealController extends BaseApiController {
             model.setViewName("login");
         } else {
             PageHelper.startPage(pageNum, pageSize);
-            List<ZdSetmeal> setmeals = setmealService.list();
+            List<ZdSetmeal> setmeals = setmealService.listAllByOrder();
             PageInfo<ZdSetmeal> info = new PageInfo<ZdSetmeal>(setmeals);
             List<ZdSetmeal> setmealList = new ArrayList<>();
             for(int i=0; i<setmeals.size();i++){
@@ -94,6 +100,20 @@ public class SetmealController extends BaseApiController {
     public Object getByCode(String code){
         JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
         result.put("data", setmealService.getByCode(code));
+        return result;
+    }
+
+    @RequestMapping(value = "/setmeal/del.do", method = RequestMethod.POST)
+    public Object delete(Integer id){
+        JSONObject result = ServiceParamHelper.createFailResultJSONObject();
+        setmealService.deleteById(id);
+        return result;
+    }
+
+    @RequestMapping(value = "/setmeal/getName", method = RequestMethod.GET)
+    public Object getStandardName(Integer price){
+        JSONObject result = ServiceParamHelper.createSuccessResultJSONObject();
+        result.put("data",setmealService.getStandardName(price));
         return result;
     }
 

@@ -3,6 +3,8 @@ package com.opopto.zdsetmealfood.dao;
 import com.opopto.zdsetmealfood.entity.ZdSetmeal;
 import com.opopto.zdsetmealfood.entity.ZdSetmealExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ZdSetmealMapper {
@@ -30,4 +32,12 @@ public interface ZdSetmealMapper {
 
 
     ZdSetmeal selectByCode(@Param("code") String code);
+
+    ZdSetmeal selectByStandardName(@Param("standardName") String standardName);
+
+
+    List<ZdSetmeal> listAllSetmeal();
+
+    Map<String, Object> getStandardName(Integer price);
+
 }

@@ -27,4 +27,6 @@ public interface ZdSetmealItemMapper {
     int updateByPrimaryKeySelective(ZdSetmealItem record);
 
     int updateByPrimaryKey(ZdSetmealItem record);
+
+    int deleteBySetmealCode(@Param("setmealCode") String setmealCode);
 }
