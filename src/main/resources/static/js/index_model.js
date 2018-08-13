@@ -1,4 +1,5 @@
 function getInfo() {
+    $("#foodName").val("");
     $.get("/dineType/list", function(result){
         if($("#showError").text())
         {
@@ -63,6 +64,14 @@ $(".btn-primary").on("click",function () {
     var startTable=$("#Stable").val();
     var standardName=$("#foodName").val();
 
+    $("#printTable").empty();
+    $(".time").empty();
+    $(".foodType").empty();
+    $(".place").empty();
+    $(".type").empty();
+    $(".price").empty();
+    $(".num").empty();
+    var flag= /^\d+套餐\d$/;
     if( !$("table tr:visible").length){
         $("#showError").empty();
         $("#showError").append("<span>您没有选择菜品！</span>");
@@ -75,8 +84,12 @@ $(".btn-primary").on("click",function () {
 
     }else if(!startTable){
         $("#showError").empty();
-        $("#showError").append("<span>您没填写桌位！</span>");
-    }else{
+        $("#showError").append("<span>您需要多少桌！</span>");
+    }else if(!standardName.match(flag)){
+        $("#showError").empty();
+        $("#showError").append("<span>套餐名称不对！</span>");
+
+    }else {
         storage(date,bookDate,place,model_dineType,price,startTable,standardName);
     }
 
