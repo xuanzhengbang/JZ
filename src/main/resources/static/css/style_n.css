@@ -11,7 +11,9 @@ body {
 ul,li {
 	padding: 0;
 	margin: 0;
-
+}
+#printTable{
+	padding: 0px!important;
 }
 caption{
 	font-size: 36px;
@@ -19,6 +21,7 @@ caption{
 	margin-bottom: 1%;
 	color: aliceblue;
 }
+
 
 #contents{
 	color: white;
@@ -223,8 +226,8 @@ th {
 	border-bottom: none !important;
 }
 td {
-	padding: 10px !important;
-	border: 1px solid #f4f4f4 !important;
+	padding: 10px ;
+	border: 1px solid #f4f4f4 ;
 }
 ul li {
 	list-style: none;

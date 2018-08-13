@@ -45,6 +45,7 @@ public class SetmealService {
         ZdSetmealExample example = new ZdSetmealExample();
         example.createCriteria()
                 .andDelFlagEqualTo(0);
+        example.setOrderByClause("id");
         List<ZdSetmeal> setmealList = setmealMapper.selectByExample(example);
 
         return setmealList;
