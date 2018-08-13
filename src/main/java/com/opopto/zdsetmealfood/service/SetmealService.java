@@ -82,7 +82,13 @@ public class SetmealService {
     }
 
     public Map<String, Object> getStandardName(Integer price){
-        return setmealMapper.getStandardName(price);
+        Map<String, Object> map = setmealMapper.getStandardName(price);
+        if(map==null||map.isEmpty()){
+            map = new HashMap<String, Object>();
+            map.put("standardName", price + "元套餐1");
+            map.put("t", "0");
+        }
+        return map;
     }
 
 }
