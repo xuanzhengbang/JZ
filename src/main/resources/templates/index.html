@@ -192,7 +192,7 @@
           <div class="form-group">
             <label for="name">标准：</label>
 
-            <input type="number" min="100" max="9999" class="form-control" id="price" style="width: 100px"  onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="输入价格">
+            <input type="number" min="100" max="9999" class="form-control" id="price" style="width: 100px"  onkeyup="value=value.replace(/[^\d]/g,'')" placeholder="输入价格" onchange="foodNameType(this.id)">
 
             <label>元/桌</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -204,8 +204,8 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="name">菜品名称：</label>
-            <input type="input"  class="form-control" id="foodName" style="width: 170px">
-            <label>套餐</label>
+            <input type="input"  class="form-control" id="foodName" disabled="disabled" style="width: 170px">
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
           </div>
@@ -252,7 +252,21 @@
 <script src="/js/LodopFuncs.js"></script>
 
 <script>
-
+    //套餐种类自动加载处理
+    function foodNameType(name){
+        name= $("#price").val();
+        $.ajax({
+            type:'get',
+            url:"/setmeal/getName",
+            data:"price="+name,
+            dateType:"text",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (result) {
+                name =result.data.standardName;
+                $("#foodName").val(name);
+            }
+        });
+    }
 </script>
 
 <!-- end: Javascript -->
