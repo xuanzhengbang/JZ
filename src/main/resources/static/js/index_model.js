@@ -1,5 +1,6 @@
 function getInfo() {
     $("#foodName").val("");
+    $("#price").val("");
     $.get("/dineType/list", function(result){
         if($("#showError").text())
         {
@@ -71,7 +72,7 @@ $(".btn-primary").on("click",function () {
     $(".type").empty();
     $(".price").empty();
     $(".num").empty();
-    var flag= /^\d+套餐\d$/;
+    var flag= /^\d+元套餐\d$/;
     if( !$("table tr:visible").length){
         $("#showError").empty();
         $("#showError").append("<span>您没有选择菜品！</span>");
