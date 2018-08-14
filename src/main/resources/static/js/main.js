@@ -44,7 +44,6 @@
 
     //搜索查询的餐品
     $("#inputButton").on("click",function(){
-
         //缓存的添加
         //    获取输入框中的菜品名称
         var foodname= $("#input_search").val();
@@ -139,24 +138,27 @@
         $(this).addClass("active").siblings().removeClass("active");
     });
     $(document).on("click",".nextli",function() {
-        var index = $(this).index();
         $(this).addClass("nextlili").siblings().removeClass("nextlili");
     });
+
+
+    var textArr =new Array();
     /*这是button按钮点击事件*/
     $(".button4").on("click",function() {
-        var index = $(this).index();
+        var bts = window.localStorage.getItem("bts");
+
         if($(this).is(".button6")) {
             $(this).removeClass("button6");
+            textArr.remove($(this).text());
         } else {
             $(this).addClass("button6");
+            textArr.push($(this).text());
         }
     });
 
-    /*动态获取js*/
-
     /*这是提交订单事件*/
     $(".busubmit").on("click",function() {
-        var arr = new Array();
+
         var bts = window.localStorage.getItem("bts");
         var res = "";
         //通过获取点击添加的css查找选中的按钮
@@ -169,27 +171,27 @@
                     res += "，" + a;
             }
             $(this).removeClass("button6");
-            arr.push(a);
+            textArr.push(a);
         });
         if(res != null && res != "" && res != undefined){
             alert(res + "已添加");
             return;
         }
         if(bts != null && bts != "" && bts != "null"){
-            bts += "," + arr;
+            bts += "," + textArr;
         } else {
-            bts = arr;
+            bts = textArr;
         }
         window.localStorage.setItem("bts",bts);
-        for(var i in arr) {
-            $(".addFood").append("<button class='button button5 button7' id='button7'>" + arr[i] + "</button>")
+        for(var i in textArr) {
+            $(".addFood").append("<button class='button button5 button7' id='button7'>" + textArr[i] + "</button>")
         }
     });
 
     //删除菜品,先添加属性再删除
 
     $(".button7").on("click","#button7",function() {
-        //$(this).addClass("buttonDel").siblings().removeClass("buttonDel");
+
         if($(this).is(".buttonDel")) {
             $(this).removeClass("buttonDel");
         } else {

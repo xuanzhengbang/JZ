@@ -66,7 +66,6 @@ $(".btn-primary").on("click",function () {
     $(".type").empty();
     $(".price").empty();
     $(".num").empty();
-    var flag= /^\d+元套餐\d$/;
     if( !$("table tr:visible").length){
         $("#showError").empty();
         $("#showError").append("<span>您没有选择菜品！</span>");
@@ -80,7 +79,7 @@ $(".btn-primary").on("click",function () {
     }else if(!startTable){
         $("#showError").empty();
         $("#showError").append("<span>您需要多少桌！</span>");
-    }else if(!standardName.match(flag)){
+    }else if(!standardName){
         $("#showError").empty();
         $("#showError").append("<span>套餐名称不对！</span>");
 
