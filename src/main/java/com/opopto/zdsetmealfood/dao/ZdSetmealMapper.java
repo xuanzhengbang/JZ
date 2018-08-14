@@ -38,6 +38,6 @@ public interface ZdSetmealMapper {
 
     List<ZdSetmeal> listAllSetmeal();
 
-    Map<String, Object> getStandardName(Integer price);
+    List<Map<String, Object>> getStandardName(Integer price);
 
 }

@@ -1,7 +1,8 @@
 # ---> Java
 *.class
 
-src/main/resources/application.properties
+application.properties
+application-dev.properties
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

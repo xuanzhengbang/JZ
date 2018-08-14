@@ -22,6 +22,8 @@ public class ZdFood implements Serializable {
 
     private String desc;
 
+    private Integer count;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -96,22 +98,27 @@ public class ZdFood implements Serializable {
         this.desc = desc == null ? null : desc.trim();
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", code=").append(code);
-        sb.append(", name=").append(name);
-        sb.append(", typeCode=").append(typeCode);
-        sb.append(", delFlag=").append(delFlag);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", desc=").append(desc);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "ZdFood{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", typeCode='" + typeCode + '\'' +
+                ", typeName='" + typeName + '\'' +
+                ", delFlag=" + delFlag +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", desc='" + desc + '\'' +
+                ", count=" + count +
+                '}';
     }
 }

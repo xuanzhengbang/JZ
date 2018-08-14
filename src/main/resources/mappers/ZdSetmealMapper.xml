@@ -357,13 +357,13 @@
 
   <select id="getStandardName" parameterType="java.lang.Integer" resultMap="StandardMap">
     select
-  CONCAT(z.price,'元套餐',convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed)+1) standardName,
-  convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed)+1 t
+  CONCAT(z.price,'元套餐',convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed)) standardName,
+  convert(SUBSTRING_INDEX(z.standard_name, '元套餐', -1),signed) t
   FROM
       zd_setmeal z
   WHERE z.price = #{price,jdbcType=INTEGER}
+  AND z.del_flag = 0
   ORDER BY t DESC
-  LIMIT 1;
   </select>
   <resultMap id="StandardMap" type="map">
     <id column="standardName" property="standardName" jdbcType="VARCHAR" />
