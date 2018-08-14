@@ -114,11 +114,10 @@
     };
 
 
-
-
     //菜品自动添加的js
     $("#ripper_active").on("click",function() {
         $(".tree").empty();
+
         $.ajax({
             type :"GET",
             url : "/foodType/list",

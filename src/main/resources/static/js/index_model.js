@@ -14,6 +14,7 @@ function getInfo() {
 
     $.get("/place/list", function(result){
         $("#model_place").empty();
+
         for (var i in result.data){
             if(result.data[i].items.length>0){
                 var htm = "<optgroup label=" + result.data[i].name + ">";
@@ -46,13 +47,6 @@ function getInfo() {
     }
     
 }
-
-//提交菜单
-// :visible 选择器表示获取可见的元素
-//
-// $("table#test tr:visible") 表示获取id为test的table下的可见行对象
-//
-// length属性表示对象的长度，如果没有可见的tr，那么获取长度为0
 
 $(".btn-primary").on("click",function () {
     var date=$("#date_input").val();
@@ -204,25 +198,6 @@ $("#printBtn").on("click",function () {
         $("table#model_table").find("td").each(function () {
             $("#printTable").append("<tr><td>"+$(this).text()+"</td></tr>");
         });
-
-        // var foods=new Array();
-        // var j=0;
-        // $("table#model_table").find("td").each(function () {
-        //     foods[j]=$(this).text();
-        //     j++;
-        // });
-        // var k=0;
-        // for (var i=0;i<foods.length;){
-        //    $("#printTable").append("<tr class='table"+i+"'></tr>");
-        //    k=i;
-        //    for(var j=0;j<2;j++){
-        //        if(foods[i]){
-        //            $(".table"+k+"").append("<td>"+foods[i]+"</td>")
-        //            ++i;
-        //        }
-        //     }
-        // }
-
         CreateTwoFormPage();
         LODOP.PREVIEW();
     }
