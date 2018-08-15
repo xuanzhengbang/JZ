@@ -71,10 +71,10 @@ public class SetmealService {
     }
 
     public void deleteById(Integer id){
-        ZdSetmeal setmeal = setmealMapper.selectByPrimaryKey(id);
-        setmeal.setDelFlag(1);
-        setmealMapper.updateByPrimaryKeySelective(setmeal);
-        setmealItemMapper.deleteBySetmealCode(setmeal.getCode());
+        int  setmeal = setmealMapper.deleteByPrimaryKey(id);
+//        setmeal.setDelFlag(1);
+//        setmealMapper.updateByPrimaryKeySelective(setmeal);
+//        setmealItemMapper.deleteBySetmealCode(setmeal.getCode());
     }
 
     public List<ZdSetmeal> listAllByOrder(){
