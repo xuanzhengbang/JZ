@@ -8,16 +8,22 @@
                 $(".addFood").append("<button class='button button5 button7' id='button7'>" + arr[i] + "</button>")
         }
     }
-
+    var textArr =new Array();
     /////////////////
     //ajax 需要添加新的方法
     function caipin(){
         $(".button4").on("click",function() {
-            var index = $(this).index();
             if($(this).is(".button6")) {
                 $(this).removeClass("button6");
+                var foodnumber=textArr.indexOf($(this).text());
+                if(foodnumber!=-1){
+                    textArr.splice(foodnumber,1);
+                }
             } else {
                 $(this).addClass("button6");
+               var foodnum= textArr.indexOf($(this).text());
+               if(foodnum==-1)
+                    textArr.push($(this).text());
             }
         });
     }
@@ -142,49 +148,63 @@
     });
 
 
-    var textArr =new Array();
+
     /*这是button按钮点击事件*/
     $(".button4").on("click",function() {
-        var bts = window.localStorage.getItem("bts");
 
         if($(this).is(".button6")) {
             $(this).removeClass("button6");
-            textArr.remove($(this).text());
+            var foodnumber=textArr.indexOf($(this).text());
+            if(foodnumber!=-1){
+                textArr.splice(foodnumber,1);
+            }
+
         } else {
             $(this).addClass("button6");
-            textArr.push($(this).text());
+            var foodnum= textArr.indexOf($(this).text());
+            if(foodnum==-1)
+                textArr.push($(this).text());
         }
     });
-
     /*这是提交订单事件*/
     $(".busubmit").on("click",function() {
-
+        var arr = new Array();
         var bts = window.localStorage.getItem("bts");
         var res = "";
+
         //通过获取点击添加的css查找选中的按钮
-        $("button.button6").each(function() {
+        $("button.button6").each(function () {
             var a = $(this).text();
-            if(bts.indexOf(a) != -1){
-                if(res=="")
+            if (bts.indexOf(a) != -1) {
+                if (res == "")
                     res = a;
                 else
                     res += "，" + a;
             }
             $(this).removeClass("button6");
-            textArr.push(a);
+            arr.push(a);
         });
-        if(res != null && res != "" && res != undefined){
-            alert(res + "已添加");
-            return;
-        }
-        if(bts != null && bts != "" && bts != "null"){
-            bts += "," + textArr;
+        if (bts != null && bts != "null") {
+            // console.log(window.localStorage);
+            var bts_array = bts.split(',');
+            if (bts_array != null && bts_array.length > 0) {
+                //循环数组，发现不一样的餐品添加进入，找到一样的不添加。
+                for (var i in textArr) {
+                    // var flag = 0;
+                    if(bts_array.indexOf(textArr[i])==-1)
+                    {
+                        bts += "," + textArr[i];
+                        $(".addFood").append("<button class='button button5 button7' id='button7'>" + textArr[i] + "</button>")
+                    }
+                }
+                window.localStorage.setItem("bts",bts);
+            }
         } else {
-            bts = textArr;
-        }
-        window.localStorage.setItem("bts",bts);
-        for(var i in textArr) {
-            $(".addFood").append("<button class='button button5 button7' id='button7'>" + textArr[i] + "</button>")
+            for (var i in textArr) {
+                bts += ","+textArr[i];
+                $(".addFood").append("<button class='button button5 button7' id='button7'>" + textArr[i] + "</button>")
+            }
+            window.localStorage.setItem("bts", bts);
         }
     });
 

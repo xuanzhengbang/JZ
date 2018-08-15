@@ -8,7 +8,9 @@ function getInfo() {
         }
         $("#model_dineType").empty();
         for (var i in result.data){
-            $("#model_dineType").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+            if (result.data[i].name!=null){
+                $("#model_dineType").append("<option value='"+result.data[i].name +"'>"+result.data[i].name+"</option>");
+            }
         }
     });
 
@@ -37,7 +39,9 @@ function getInfo() {
         var bts_array = bts.split(',');
         if(bts_array!=null && bts_array.length>0){
             for(var k in bts_array){
-                if(bts_array[k].length>0){
+                console.log(bts_array[k]);
+                console.log("长度"+bts_array[k].length);
+                if(bts_array[k]!="null"&&bts_array[k].length>0){
                     var newRow = table.insertRow();
                     var cell = newRow.insertCell(0);
                     cell.innerHTML=bts_array[k];
@@ -135,7 +139,7 @@ function printFood(date,book,place,model_dineType,num,price) {
         var bts_array = bts.split(',');
         if(bts_array!=null && bts_array.length>0){
             for(var k in bts_array){
-                if(bts_array[k].length>0){
+                if(bts_array[k]!="null"&&bts_array[k].length>0){
                     var newRow = table.insertRow();
                     var cell = newRow.insertCell(0);
                     cell.innerHTML=bts_array[k];
